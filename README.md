@@ -27,13 +27,13 @@ Among the preprint servers that do include links to published papers in their me
 
 
 medRxiv | ResearchSquare 
-:--------------------------:|:----------------------------|
+:--------------------------|:----------------------------|
 ![COVID-19 preprints per week - medRxiv](outputs/figures/covid19_preprints_published_medRxiv_week.png) | ![COVID-19 preprints per week - ResearchSquare](outputs/figures/covid19_preprints_published_Research%20Square_week.png)
 
 bioRxiv | OSF preprint servers 
-:--------------------------:|:----------------------------|
+:--------------------------|:----------------------------|
 ![COVID-19 preprints per week - bioRxiv](outputs/figures/covid19_preprints_published_bioRxiv_week.png) | ![COVID-19 preprints per week - OSF](outputs/figures/covid19_preprints_published_OSF_week.png)
 
 JMIR Preprints | Preprints.org
-:--------------------------:|:----------------------------|
+:--------------------------|:----------------------------|
 ![COVID-19 preprints per week - JMIR](outputs/figures/covid19_preprints_published_JMIR_week.png) | ![COVID-19 preprints per week - Preprints.org](outputs/figures/covid19_preprints_published_Preprints.org_week.png)
