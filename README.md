@@ -28,11 +28,11 @@ Among the preprint servers that do include links to published papers in their me
 
  | 
 :--------------------------:|:----------------------------|
-![COVID-19 preprints per week - JMIR](outputs/figures/covid19_preprints_published_JMIR_week.png) | ![COVID-19 preprints per week - medRxiv](outputs/figures/covid19_preprints_published_medRxiv_week.png)
+![COVID-19 preprints per week - medRxiv](outputs/figures/covid19_preprints_published_medRxiv_week.png) | ![COVID-19 preprints per week - bioRxiv](outputs/figures/covid19_preprints_published_bioRxiv_week.png)
 
  | 
 :--------------------------:|:----------------------------|
-![COVID-19 preprints per week - bioRxiv](outputs/figures/covid19_preprints_published_bioRxiv_week.png) | ![COVID-19 preprints per week - ResearchSquare](outputs/figures/covid19_preprints_published_Research%20Square_week.png)
+![COVID-19 preprints per week - ResearchSquare](outputs/figures/covid19_preprints_published_Research%20Square_week.png) | ![COVID-19 preprints per week - JMIR](outputs/figures/covid19_preprints_published_JMIR_week.png)
 
  |
 :--------------------------:|:----------------------------|
