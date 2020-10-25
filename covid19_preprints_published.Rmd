@@ -284,3 +284,16 @@ covid_preprints_published_viz %>%
                 "_week.png"), 
          width = 12, height = 6)
 ```
+
+
+```{r message = FALSE, warning = FALSE}
+
+# Create empty figure for table layout in Readme
+
+ggplot() + 
+  theme_void() + 
+  ggsave(paste0("outputs/figures/empty.png"), 
+         width = 12, 
+         height = 6)
+
+```
