@@ -38,6 +38,6 @@ JMIR Preprints (n=1083) | Preprints.org (n=990)
 :--------------------------|:----------------------------|
 ![COVID-19 preprints per week - JMIR](outputs/figures/covid19_preprints_published_JMIR_week.png) | ![COVID-19 preprints per week - Preprints.org](outputs/figures/covid19_preprints_published_Preprints.org_week.png)
 
-ChemRxiv (n=415) | 
+ChemRxiv (n=415) | x
 :--------------------------|:----------------------------|
 ![COVID-19 preprints per week - ChemRXiv](outputs/figures/covid19_preprints_published_ChemRxiv_week.png) | ![empty](outputs/figures/empty.png)
