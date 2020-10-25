@@ -2,7 +2,7 @@
 
 *[work in progress]*
 
-This repository contains code used to extract details of the COVID-19 related preprints that are linked to published journal articles, and visualize their distribution over time. Work building on [COVID-19 Preprints](https://github.com/nicholasmfraser/covid19_preprints) by [Nicholas Fraser](https://orcid.org/0000-0002-7582-6339) and [Bianca Kramer](https://orcid.org/0000-0002-5965-6560)
+This repository contains code used to extract details of the COVID-19 related preprints that are linked to published journal articles, and visualize their distribution over time (building on [COVID-19 Preprints](https://github.com/nicholasmfraser/covid19_preprints) by [Nicholas Fraser](https://orcid.org/0000-0002-7582-6339) and [Bianca Kramer](https://orcid.org/0000-0002-5965-6560))
 
 
 The process for collecting preprint metadata is documented fully [here](covid19_preprints_published.Rmd). In general terms, preprint metadata harvested from Crossref were enriched with data on linked published journal articles using the metadata field `relation.is-preprint-of` in Crossref.  
@@ -18,7 +18,7 @@ For example, SRRN (n=3772 COVID19-related preprints), Authorea (n=894), and Scie
 
 **In short, the proportions shown here represent the lower bound of preprints that have subsequently been published as journal articles**. 
 
-Among the preprint servers that do include links to published papers in their metadata, there are some interesting differences in the proportion of preprints linked to published papers (see figures below). These could reflect both technical workflows and publication practices, and will be interesting to explore further. 
+Among the preprint servers that do include links to published papers in their metadata, there are some interesting differences in the proportion of preprints linked to published papers (see figures below). These could reflect both technical workflows (e.g. linking  might be easier/quicker when preprint server and journals are from the same publisher) and publication practices (e.g. peer review process, decision on when to post a preprint), and will be interesting to explore further. 
 
 ### Results
 ![](outputs/figures/covid19_preprints_published_week.png)
