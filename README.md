@@ -14,7 +14,7 @@ Crossref notifies preprint servers of potential matches with published articles.
 (see [Crossref metadata: Posted content (includes preprints)](https://support.crossref.org/hc/en-us/articles/213126346-Posted-content-includes-preprints#assoc)), but uptake of this varies across preprint services.
 
 
-For example, SRRN (n= 3772 COVID19-related preprints), Authorea (n= 894), and Scielo Preprints (n= 236) all do not have any links to published papers in their preprint metadata on Crossref. Figshare [only recently](https://twitter.com/figshare/status/1277516684358803461) started depositing these metadata for their preprint servers that use Crossref (ChemRXiv, TechRXiv). Both [bioRxiv](https://www.biorxiv.org/about/FAQ) and [medRxiv](https://www.medrxiv.org/about/FAQ), that do update Crossref metadata with links to published papers, mention in their FAQs that there is usually a delay of a couple of weeks, and matches might be missed. 
+For example, SRRN (n=3772 COVID19-related preprints), Authorea (n=894), and Scielo Preprints (n=236) all do not include links to published papers in their preprint metadata on Crossref. Figshare [only recently](https://twitter.com/figshare/status/1277516684358803461) started depositing these metadata for their preprint servers that use Crossref (ChemRXiv, TechRXiv). Both [bioRxiv](https://www.biorxiv.org/about/FAQ) and [medRxiv](https://www.medrxiv.org/about/FAQ), that do update Crossref metadata with links to published papers, mention in their FAQs that there is usually a delay of a couple of weeks, and matches might be missed. 
 
 **In short, the proportions shown here represent the lower bound of preprints that have subsequently been published as journal articles**. 
 
@@ -40,4 +40,4 @@ JMIR Preprints (n=1083) | Preprints.org (n=990)
 
 ChemRxiv (n=415) | 
 :--------------------------|:----------------------------|
-![COVID-19 preprints per week - ChemRXiv](outputs/figures/covid19_preprints_published_ChemRxiv_week.png) |
+![COVID-19 preprints per week - ChemRXiv](outputs/figures/covid19_preprints_published_ChemRxiv_week.png) | 
