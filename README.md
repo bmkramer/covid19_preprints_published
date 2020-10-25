@@ -18,7 +18,7 @@ For example, SRRN (n= 3772 COVID19-related preprints), Authorea (n= 729), and Sc
 
 **In short, the proportions shown here represent the lower bound of preprints that have subsequently been published as journal articles**. 
 
-Among the preprint servers that do include links to published papers in their metadata, there are some interesting differences in the proportion of preprints linked to published papers (see figures below). These could reflect both technical workflows and publication practices, and will be interesting to investigate further. 
+Among the preprint servers that do include links to published papers in their metadata, there are some interesting differences in the proportion of preprints linked to published papers (see figures below). These could reflect both technical workflows and publication practices, and will be interesting to explore further. 
 
 ### Results
 ![](outputs/figures/covid19_preprints_published_week.png)
