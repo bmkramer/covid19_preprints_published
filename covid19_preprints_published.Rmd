@@ -192,7 +192,7 @@ covid_preprints_published %>%
                expand = c(0, 0),
                limits = c(ymd("2020-01-13"), ymd(sample_date_preprints))) +
   scale_fill_manual(values = palette) +
-  ggsave("outputs/figures/covid19_preprints_published_week.png", width = 12, height = 6)
+  ggsave("outputs/figures/preprints_published/covid19_preprints_published_week.png", width = 12, height = 6)
 ```
 
 
@@ -222,7 +222,7 @@ covid_preprints_published %>%
                expand = c(0.01, 0),
                limits = c(ymd("2020-01-13"), ymd(sample_date_preprints) + 1)) +
   scale_fill_manual(values = palette) +
-  ggsave("outputs/figures/covid19_preprints_published_day_cumulative.png", width = 12, height = 6)
+  ggsave("outputs/figures/preprints_published/covid19_preprints_published_day_cumulative.png", width = 12, height = 6)
 ```
 
 ```{r message = FALSE, warning = FALSE}
@@ -241,7 +241,7 @@ covid_preprints_published_viz <- covid_preprints_published %>%
     TRUE ~ source))
 
 # Create vector with sources in order of descending number of preprints linked to published articles
-sources_count <- covid_preprints_published_viz %>%
+source_count <- covid_preprints_published_viz %>%
   filter(!is.na(is_preprint_of)) %>%
   count(source) %>%
   arrange(desc(n)) %>%
@@ -255,7 +255,7 @@ sources_count <- covid_preprints_published_viz %>%
 # Weekly preprint counts - per preprint server
 
 # Select source to display in graph
-var <- sources_count[8]
+var <- source_count[7]
 
 # Create graph
 covid_preprints_published_viz %>%
@@ -281,10 +281,41 @@ covid_preprints_published_viz %>%
                expand = c(0, 0),
                limits = c(ymd("2020-01-13"), ymd(sample_date_preprints))) +
   scale_fill_manual(values = palette) +
-  ggsave(paste0("outputs/figures/covid19_preprints_published_",
+  ggsave(paste0("outputs/figures/preprints_published/covid19_preprints_published_",
                 var,
                 "_week.png"), 
          width = 12, height = 6)
+```
+
+
+```{r}
+#Percentage of preprints published
+
+p2I <- covid_preprints_published_viz %>% 
+  filter(source %in% source_count[1:7]) %>%
+  count(source, is_preprint_of) %>%
+  group_by(source) %>%
+  mutate(prop = n*100 / sum(n),
+         total = sum(n)) %>%
+  ungroup() %>%
+  mutate(source_label = str_c(source, "\n(", total, ")"),
+         data_label = str_c(round(prop,1), "%")) %>%
+  filter(!is.na(is_preprint_of)) %>%
+  arrange(desc(total)) %>%
+  mutate(source_label = factor(source_label),
+         source_label = fct_inorder(source_label)) %>%
+  ggplot(aes(x = source_label, y = prop, width=.75)) +
+  geom_col(color = "grey50", fill = "#95D8FA", size = 0.25, position = "dodge") +
+  geom_text(aes(label = data_label), vjust = -1) +
+  labs(x = "", y = "% linked to published journal article", fill ="") +
+  #scale_x_discrete(labels = function(x) str_wrap(x, width = 12)) +
+  theme(axis.title.x = element_blank()) +
+  guides(fill = FALSE) + 
+  theme(axis.text.x = element_text(size = 10)) +
+  theme(axis.text.y = element_blank()) +
+  theme(axis.title.y = element_text(size = 12))
+  ggsave("outputs/figures/preprints_published/covid19_preprints_published_percentage.png", width = 12, height = 6)
+
 ```
 
 
@@ -294,7 +325,7 @@ covid_preprints_published_viz %>%
 
 ggplot() + 
   theme_void() + 
-  ggsave(paste0("outputs/figures/empty.png"), 
+  ggsave(paste0("outputs/figures/preprints_published/empty.png"), 
          width = 12, 
          height = 6)
 
