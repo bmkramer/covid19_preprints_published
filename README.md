@@ -23,7 +23,7 @@ Among the preprint servers that do include links to published papers in their me
 ### Results
 ![](outputs/figures/preprints_published/covid19_preprints_published_week.png)
 
-![](outputs/figures/preprints_published/covid19_preprints_published_day_cumulative.png)
+
 
 
 medRxiv (n=7370) | ResearchSquare (n=3794)
@@ -38,6 +38,8 @@ JMIR Preprints (n=1083) | Preprints.org (n=990)
 :--------------------------|:----------------------------|
 ![COVID-19 preprints per week - JMIR](outputs/figures/preprints_published/covid19_preprints_published_JMIR_week.png) | ![COVID-19 preprints per week - Preprints.org](outputs/figures/preprints_published/covid19_preprints_published_Preprints.org_week.png)
 
-ChemRxiv (n=415) | % preprints linked to published papers
+ChemRxiv (n=415) | .
 :--------------------------|:----------------------------|
-![COVID-19 preprints per week - ChemRXiv](outputs/figures/preprints_published/covid19_preprints_published_ChemRxiv_week.png) | ![empty](outputs/figures/preprints_published/covid19_preprints_published_percentage.png)
+![COVID-19 preprints per week - ChemRXiv](outputs/figures/preprints_published/covid19_preprints_published_ChemRxiv_week.png) | ![empty](outputs/figures/preprints_published/empty.png)
+
+![percentage of preprints linked to published papers](outputs/figures/preprints_published/covid19_preprints_published_percentage.png)
