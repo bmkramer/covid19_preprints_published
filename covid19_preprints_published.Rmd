@@ -240,9 +240,9 @@ covid_preprints_published_viz <- covid_preprints_published %>%
     source %in% OSF_names ~ "OSF",
     TRUE ~ source))
 
-# Create vector with sources in order of descending number of preprints linked to published articles
+# Create vector with sources in order of descending number of preprints 
 source_count <- covid_preprints_published_viz %>%
-  filter(!is.na(is_preprint_of)) %>%
+  #filter(!is.na(is_preprint_of)) %>%
   count(source) %>%
   arrange(desc(n)) %>%
   pull(source)
@@ -291,7 +291,7 @@ covid_preprints_published_viz %>%
 ```{r}
 #Percentage of preprints published
 
-p2I <- covid_preprints_published_viz %>% 
+covid_preprints_published_viz %>% 
   filter(source %in% source_count[1:7]) %>%
   count(source, is_preprint_of) %>%
   group_by(source) %>%

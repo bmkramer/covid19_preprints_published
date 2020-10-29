@@ -1,0 +1,244 @@
+---
+title: "COVID-19 Preprints - CSHL"
+output: github_document
+---
+
+Sourcing information on preprints that have been published as journal articles directly from bioRxiv/medRxiv
+
+Script for querying bioRxiv/medRxiv re-used from [Preprinting a pandemic](https://github.com/preprinting-a-pandemic/pandemic_preprints) (see [preprint](https://doi.org/10.1101/2020.05.22.111294) on bioRxiv)
+
+# Load required packages 
+
+```{r message = FALSE, warning = FALSE}
+
+library(lubridate)
+library(tidyverse)
+library(rvest)
+library(httr)
+library(colorspace)
+
+```
+
+
+# Set sample date
+# Retrieve the latest sample date for preprints
+
+```{r}
+sample_date <- Sys.Date()
+
+sample_date_preprints <- fromJSON(
+  "https://raw.githubusercontent.com/nicholasmfraser/covid19_preprints/master/data/metadata.json"
+  ) 
+
+sample_date_preprints <- sample_date_preprints %>%
+  .$sample_date %>%
+  as.Date()
+
+```
+
+
+# Retrieve preprint metadata via bioRxiv API
+# script adapted from [Preprinting a pandemic - preprint_details.Rmd](https://github.com/preprinting-a-pandemic/pandemic_preprints/blob/master/preprint_details.Rmd)
+
+```{r}
+# See https://api.biorxiv.org for details
+# Note that the API allows querying of both bioRxiv and medRxiv via the 
+# 'server' parameter (although this is not documented)
+max_results_per_page <- 100 # max allowable number of results per page
+base_url <- "https://api.biorxiv.org/details/"
+start <- "2020-01-01"
+end <- sample_date
+getPreprintData <- function(server) {
+  
+  # Make initial request
+  url <- paste0(base_url, server, "/", start, "/", end, "/", 0)
+  request <- httr::GET(url = url)
+  content <- httr::content(request, as = "parsed")
+  
+  # Determine total number of results and required iterations for paging
+  total_results <- content$messages[[1]]$total
+  pages <- ceiling(total_results / max_results_per_page) - 1
+  
+  data <- content$collection
+  
+  for (i in 1:pages) {
+    cursor <- format(i * max_results_per_page, scientific = FALSE) # otherwise page 100000 becomes 1e05, which the api does not recognise
+    url <- paste0(base_url, server, "/", start, "/", end, "/", cursor)
+    request <- httr::RETRY("GET", url, times = 5, pause_base = 1, pause_cap = 60) # retry if server error
+    content <- httr::content(request, as = "parsed")
+    if(content$messages[[1]]$status == "ok") {
+      data <- c(data, content$collection)
+    } else {
+      data <- c(data, list("error" = content$messages[[1]]$status))
+    }
+    Sys.sleep(1) # don't hit the API too hard
+  }
+  return(data)
+}
+preprint_data <- purrr::map(c("biorxiv", "medrxiv"), getPreprintData)
+```
+
+
+```{r cache = TRUE}
+parsePreprintData <- function(item) {
+  tibble(
+    source = item$server,
+    doi = item$doi,
+    posted_date = item$date,
+    version = item$version,
+    is_published = item$published != "NA",
+    published_doi = if(item$published == "NA") NA_character_ else item$published
+  )
+}
+
+# Parse data to dataframe
+preprints_all <- map_dfr(preprint_data, ~ map_df(.x, parsePreprintData)) %>%
+  #for this purpose, date and version info not needed
+  #information on published articles is added to all versions
+  select(source, doi, is_published, published_doi) %>%
+  distinct() %>%
+  mutate(
+    # clean up DOIs for later matching
+    doi = str_trim(str_to_lower(doi)),
+    published_doi = str_trim(str_to_lower(published_doi)))
+# 59584 -> 47713, of which 7444 with published version
+# NB confirmed 47713 unique dois 
+
+```
+
+# Match to list of COVID19-preprints collected from Crossref
+
+```{r}
+preprints_crossref <- read_csv("data/covid19_preprints_published.csv")
+
+preprints_matched <- preprints_crossref %>%
+  left_join(preprints_all_2, by = c("identifier" = "doi")) %>%
+  select(-`source.y`) %>%
+  rename(source =`source.x`) %>%
+  filter(source %in% c("bioRxiv", "medRxiv")) %>%
+  rename(is_published_CSHL = is_published,
+         published_doi_CSHL = published_doi)
+
+write_csv(preprints_matched, "data/covid19_preprints_published_CSHLmatch.csv")
+
+```
+
+# Check matches from Crossref with matches from bioRxiv/medRxiv directly
+
+```{r}
+
+match_check <- preprints_matched %>%
+  count(source, is_preprint_of, is_published_CSHL)
+
+
+```
+
+# Visualizations
+
+```{r message = FALSE, warning = FALSE}
+# Default theme options
+theme_set(theme_minimal() +
+          theme(text = element_text(size = 12),
+          axis.text.x = element_text(angle = 90, vjust = 0.5),
+          axis.title.x = element_text(margin = margin(20, 0, 0, 0)),
+          axis.title.y = element_text(margin = margin(0, 20, 0, 0)),
+          legend.key.size = unit(0.5, "cm"),
+          legend.text = element_text(size = 8),
+          plot.caption = element_text(size = 10, hjust = 0, color = "grey25", 
+                                      margin = margin(20, 0, 0, 0))))
+# Create a nice color palette
+pal_1 <- colorspace::lighten(pals::tol(n = 10), amount = 0.2)
+pal_2 <- colorspace::lighten(pals::tol(n = 10), amount = 0.4)
+palette <- c(pal_1, pal_2)
+```
+
+```{r message = FALSE, warning = FALSE}
+
+# Weekly preprint counts - per preprint server
+
+# Select source to display in graph
+var <- source_count[7]
+
+# Create graph
+covid_preprints_published_viz %>%
+  filter(source == var) %>%
+  mutate(
+    status = case_when(
+      is.na(is_preprint_of) ~ "not linked to published journal article",
+      !is.na(is_preprint_of) ~ "linked to published journal article"
+    ),
+    status = factor(status),
+    posted_week = ymd(cut(posted_date,
+                          breaks = "week",
+                          start.on.monday = TRUE))) %>%
+  count(status, posted_week) %>%
+  ggplot(aes(x = posted_week, y = n, 
+             fill = forcats::fct_rev(status))) +
+  geom_col() +
+  labs(x = "Posted Date (week beginning)", y = "Preprints", fill = "status (from Crossref)",
+       title = paste0("COVID-19 preprints per week on ",var), 
+       subtitle = paste0("(preprints up until ", sample_date_preprints, ", sample date ", sample_date,")")
+       ) +
+  scale_x_date(date_breaks = "1 week",
+               expand = c(0, 0),
+               limits = c(ymd("2020-01-13"), ymd(sample_date_preprints))) +
+  scale_fill_manual(values = palette) +
+  ggsave(paste0("outputs/figures/preprints_published/covid19_preprints_published_",
+                var,
+                "_week.png"), 
+         width = 12, height = 6)
+```
+
+```{r message = FALSE, warning = FALSE}
+# For graphs per preprint server
+
+
+# Create vector with sources in order of descending number of preprints
+source_count <- preprints_matched %>%
+  #filter(!is.na(is_preprint_of)) %>%
+  count(source) %>%
+  arrange(desc(n)) %>%
+  pull(source)
+
+```
+
+```{r message = FALSE, warning = FALSE}
+
+# Weekly preprint counts - per preprint server
+
+# Select source to display in graph
+var <- source_count[1]
+
+# Create graph
+p1 <- preprints_matched %>%
+  filter(source == var) %>%
+  mutate(
+    status = case_when(
+      !is.na(is_preprint_of)  ~ paste0("linked to published journal article in Crossref and ", var),
+      (is.na(is_preprint_of) & is_published_CSHL == T) ~ paste0("linked to published journal article in ",var, " only"),
+      (is.na(is_preprint_of) & is_published_CSHL == F) ~ "not linked to published journal article"
+    ),
+    status = factor(status,
+                    levels = c(paste0("linked to published journal article in Crossref and ", var),
+                               paste0("linked to published journal article in ",var, " only"), 
+                               "not linked to published journal article")),
+    posted_week = ymd(cut(posted_date,
+                          breaks = "week",
+                          start.on.monday = TRUE))) %>%
+  count(status, posted_week) %>%
+  ggplot(aes(x = posted_week, y = n, 
+             fill = forcats::fct_rev(status))) +
+  geom_col() +
+  labs(x = "Posted Date (week beginning)", y = "Preprints", fill = paste0("status (from Crossref) and ", var),
+       title = paste0("COVID-19 preprints per week on ",var), 
+       subtitle = paste0("(preprints up until ", sample_date_preprints, ", sample date ", sample_date,")")
+       ) +
+  scale_x_date(date_breaks = "1 week",
+               expand = c(0, 0),
+               limits = c(ymd("2020-01-13"), ymd(sample_date_preprints))) +
+  scale_fill_manual(values = c(palette[1],palette[3],palette[2])) +
+  ggsave(paste0("outputs/figures/CSHL_comparison/covid19_preprints_published_compare_Crossref_",
+                var,
+                "_week.png"), 
+         width = 12, height = 6)
+```

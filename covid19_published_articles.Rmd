@@ -1,0 +1,175 @@
+---
+title: "COVID-19 Preprints - published articles"
+output: github_document
+---
+# Collect metadata of published articles linked to COVID-19 preprints
+
+# Load required packages 
+
+```{r message = FALSE, warning = FALSE}
+
+library(lubridate)
+library(rcrossref)
+library(tidyverse)
+library(jsonlite)
+```
+
+
+
+# Get published article metadata via Crossref 
+# (publication date, journal, publisher)
+
+
+```{r}
+ 
+published_dois <- covid_preprints_published %>%
+  filter(!is.na(preprint_of_doi)) %>%
+  pull(preprint_of_doi)
+
+published_articles_data <- cr_works_(published_dois, 
+                                     parse = TRUE,
+                                     .progress = "time")
+
+parsePublishedArticleData <- function(item) {
+  tibble(
+    published_doi = item$message$DOI,
+    published_date = lubridate::date(item$message$created$`date-time`),
+    published_journal = if(length(item$message$`container-title`)) item$message$`container-title`[[1]] else NA_character_,
+    published_publisher = item$message$publisher
+  )
+}
+
+published_articles <- map_df(published_articles_data,
+                             parsePublishedArticleData) 
+
+published_articles <- published_articles %>%
+  mutate(published_doi = str_trim(str_to_lower(published_doi))) %>%
+  distinct()
+
+rm(published_articles_data, published_dois)
+
+```
+
+# Merge preprints and published articles data
+
+
+```{r}
+
+
+covid_preprints_time_to_publish <- covid_preprints_published %>%
+  mutate(preprint_of_doi = str_trim(str_to_lower(preprint_of_doi))) %>%
+  left_join(published_articles, by = c("preprint_of_doi" = "published_doi")) %>%
+  mutate(delay_in_days = as.numeric(ymd(published_date) -  ymd(posted_date)))
+  
+
+write_csv(covid_preprints_time_to_publish, "data/covid19_preprints_time_to_publish.csv")
+
+```
+
+#Visualizations
+
+```{r}
+# Theme options
+theme_set(theme_minimal() +
+            theme(text = element_text(size = 10),
+                  axis.title.x = element_text(size = 10,
+                                              margin = margin(5, 0, 5, 0)),
+                  axis.text.x = element_text(size = 8),
+                  axis.title.y = element_text(size = 10,
+                                              margin = margin(0, 5, 0, 5)),
+                  axis.text.y = element_text(size = 8),
+                  plot.title = element_text(size = 10),
+                  panel.border = element_rect(color = "#E0E0E0", 
+                                              size = 0.5, 
+                                              fill = NA),
+                  plot.margin = margin(5,5,5,5),
+                  legend.key.size = unit(0.5, "cm"),
+                  legend.text = element_text(size = 8)))
+
+# Create color palette
+pal_1 <- colorspace::lighten(pals::tol(n = 10), amount = 0.2)
+pal_2 <- colorspace::lighten(pals::tol(n = 10), amount = 0.4)
+palette <- c(pal_1, pal_2)
+
+```
+
+```{r}
+# Publishing timeline
+
+# manually check min/max delay to set chart parameters
+min_days <- min(covid_preprints_time_to_publish$delay_in_days,
+           na.rm=TRUE)
+max_days <- max(covid_preprints_time_to_publish$delay_in_days,
+           na.rm=TRUE)
+
+p1 <- covid19_preprints_time_to_publish %>%
+  mutate(covid_preprint = "covid_preprint") %>%
+  filter(!is.na(delay_in_days)) %>%
+  mutate(pub_bracket = cut(as.numeric(delay_in_days), 
+                           seq(-150, 270, by = 30), 
+                           labels=seq(-150, 240, by = 30))) %>%
+  group_by(covid_preprint) %>% 
+  count(pub_bracket) %>%
+  mutate(prop = n*100 / sum(n)) %>%
+  filter(!is.na(pub_bracket)) %>%
+  ggplot(aes(x = pub_bracket, 
+             y = prop, 
+             fill=covid_preprint, 
+             color=covid_preprint
+             )) +
+  geom_bar(alpha = 0.25, width = 1, size = 0.25, 
+           stat = "identity", position="identity") +
+  labs(x = "Time from preprint posting to publication (days)",
+       y = "% of published preprints") +
+  scale_color_manual(values = palette[2]) +
+  scale_fill_manual(values = palette[2]) +
+  theme(legend.position = "none") +
+  ggsave("outputs/figures/days_to_publish/days_to_publish_all.png", width = 6, height = 3)
+
+```
+
+```{r}
+# Time to publication for different preprint servers
+
+# Group all OSF preprints together
+OSF_names <- covid_preprints_time_to_publish %>%
+  count(source) %>%
+  filter(str_detect(source, "OSF")) %>%
+  arrange(desc(n)) %>%
+  pull(source)
+
+servers_selected <- covid19_preprints_time_to_publish %>%
+  mutate(source = case_when(
+    source %in% OSF_names ~ "OSF",
+    TRUE ~ source)) %>%
+  filter(!is.na(preprint_of_doi)) %>%
+  #filter(!is.na(delay_in_days)) %>%
+  count(source) %>%
+  arrange(desc(n)) %>%
+  slice(1:7) %>%
+  pull(source)
+
+p2 <- covid19_preprints_time_to_publish %>%
+  mutate(covid_preprint = "covid_preprint") %>%
+  mutate(source = case_when(
+    source %in% OSF_names ~ "OSF",
+    TRUE ~ source)) %>%
+  filter(!is.na(delay_in_days)) %>%
+  filter(source %in% servers_selected) %>%
+  mutate(source = factor(source),
+         source = forcats::fct_infreq(source)) %>%
+  #filter(delay_in_days > 0) %>%
+  ggplot(aes(x = source, y = delay_in_days, color = covid_preprint)) +
+  geom_boxplot(outlier.shape = NA) +
+  geom_jitter(aes(fill = factor(covid_preprint)),
+              shape = 21, size = 0.2, alpha = 0.2,
+              position = position_jitterdodge(jitter.width = 0.5)) + 
+  labs(x = "", y = str_wrap("Time from preprint posting to publication (days)", 30), 
+       fill = "", color = "") +
+  scale_color_manual(values = palette[2]) +
+  scale_fill_manual(values = palette[2]) +
+  theme(axis.text.x = element_text(size = 10, angle = 45, hjust = 1),
+        legend.position = "top") +
+  guides(fill = FALSE, colour = FALSE) +
+  ggsave("outputs/figures/days_to_publish/days_to_publish_sources.png", width = 5, height = 4) 
+```
