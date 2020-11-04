@@ -50,6 +50,6 @@ ChemRxiv (n=415) | .
 ![percentage of preprints linked to published papers](outputs/figures/preprints_published/covid19_preprints_published_percentage.png)
 Percentage of preprints linked to published papers
 
-![days to publish](outputs/figures/days_to_publish/days_t0_publish_sources.png)
+![days to publish](outputs/figures/days_to_publish/days_to_publish_sources.png)
 Days to publish
 
