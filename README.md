@@ -15,7 +15,7 @@ Crossref notifies preprint servers of potential matches with published articles.
 
 For example, SRRN (n=3772 COVID19-related preprints), Authorea (n=894), and Scielo Preprints (n=236) all do not include links to published papers in their preprint metadata on Crossref. Figshare [only recently](https://twitter.com/figshare/status/1277516684358803461) started depositing these metadata for their preprint servers that use Crossref (ChemRXiv, TechRXiv). Both [bioRxiv](https://www.biorxiv.org/about/FAQ) and [medRxiv](https://www.medrxiv.org/about/FAQ), that do update Crossref metadata with links to published papers, mention in their FAQs that there is usually a delay of a couple of weeks, and matches might be missed. 
 
-In short, the proportions shown here represent the **lower bound of preprints that have subsequently been published as journal articles**, and as such, are as much a **reflection on the uptake of metadata linking** as on the actual rate of preprints that get published as journal articles.** 
+In short, the proportions shown here represent the **lower bound of preprints that have subsequently been published as journal articles**, and as such, are as much a **reflection on the uptake of metadata linking** as on the actual rate of preprints that get published as journal articles.
 
 ### Results
 Overall, the rate of preprints with a links to published paper in their metadata is low,  as  
@@ -49,6 +49,8 @@ ChemRxiv (n=415) | .
 
 ![percentage of preprints linked to published papers](outputs/figures/preprints_published/covid19_preprints_published_percentage.png)
 Percentage of preprints linked to published papers
+
+
 
 ![days to publish](outputs/figures/days_to_publish/days_to_publish_sources.png)
 Days to publish
