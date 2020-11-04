@@ -48,3 +48,8 @@ ChemRxiv (n=415) | .
 ![COVID-19 preprints per week - ChemRXiv](outputs/figures/preprints_published/covid19_preprints_published_ChemRxiv_week.png) | ![empty](outputs/figures/preprints_published/empty.png)
 
 ![percentage of preprints linked to published papers](outputs/figures/preprints_published/covid19_preprints_published_percentage.png)
+Percentage of preprints linked to published papers
+
+![days to publish](outputs/figures/days_to_publish/days_t0_publish_sources.png)
+Days to publish
+
