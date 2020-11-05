@@ -64,6 +64,8 @@ covid_preprints_time_to_publish <- covid_preprints_published %>%
 
 write_csv(covid_preprints_time_to_publish, "data/covid19_preprints_time_to_publish.csv")
 
+covid19_preprints_time_to_publish <- read_csv("data/covid19_preprints_time_to_publish.csv")
+
 ```
 
 #Visualizations
@@ -131,6 +133,12 @@ p1 <- covid19_preprints_time_to_publish %>%
 ```{r}
 # Time to publication for different preprint servers
 
+# manually check min/max delay to set chart parameters
+min_days <- min(covid_preprints_time_to_publish$delay_in_days,
+           na.rm=TRUE)
+max_days <- max(covid_preprints_time_to_publish$delay_in_days,
+           na.rm=TRUE)
+
 # Group all OSF preprints together
 OSF_names <- covid_preprints_time_to_publish %>%
   count(source) %>%
@@ -138,26 +146,31 @@ OSF_names <- covid_preprints_time_to_publish %>%
   arrange(desc(n)) %>%
   pull(source)
 
+#create vector of names of servers w/ linked preprints
+#in descending order of number of preprints
 servers_selected <- covid19_preprints_time_to_publish %>%
   mutate(source = case_when(
     source %in% OSF_names ~ "OSF",
     TRUE ~ source)) %>%
-  filter(!is.na(preprint_of_doi)) %>%
-  #filter(!is.na(delay_in_days)) %>%
-  count(source) %>%
-  arrange(desc(n)) %>%
+  group_by(source) %>%
+  summarise_all(~ sum(!is.na(.))) %>%
+  ungroup() %>%
+  filter(is_preprint_of > 0) %>%
+  arrange(desc(identifier)) %>%
   slice(1:7) %>%
   pull(source)
+
 
 p2 <- covid19_preprints_time_to_publish %>%
   mutate(covid_preprint = "covid_preprint") %>%
   mutate(source = case_when(
     source %in% OSF_names ~ "OSF",
     TRUE ~ source)) %>%
-  filter(!is.na(delay_in_days)) %>%
+  #filter(!is.na(delay_in_days)) %>%
   filter(source %in% servers_selected) %>%
   mutate(source = factor(source),
          source = forcats::fct_infreq(source)) %>%
+  filter(!is.na(delay_in_days)) %>%
   #filter(delay_in_days > 0) %>%
   ggplot(aes(x = source, y = delay_in_days, color = covid_preprint)) +
   geom_boxplot(outlier.shape = NA) +
@@ -168,6 +181,7 @@ p2 <- covid19_preprints_time_to_publish %>%
        fill = "", color = "") +
   scale_color_manual(values = palette[2]) +
   scale_fill_manual(values = palette[2]) +
+  scale_y_continuous(breaks=seq(-120,240,30)) +
   theme(axis.text.x = element_text(size = 10, angle = 45, hjust = 1),
         legend.position = "top") +
   guides(fill = FALSE, colour = FALSE) +
