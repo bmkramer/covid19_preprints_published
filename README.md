@@ -52,13 +52,10 @@ Percentage of preprints linked to published papers | Days to publish
 :--------------------------|:----------------------------|
 ![percentage of preprints linked to published papers](outputs/figures/preprints_published/covid19_preprints_published_percentage.png) | ![days to publish](outputs/figures/days_to_publish/days_to_publish_sources.png)
 
-![percentage of preprints linked to published papers](outputs/figures/preprints_published/covid19_preprints_published_percentage.png)
-Percentage of preprints linked to published papers
 
 medRxiv (n=7370) | bioRxiv (n=2167)
 :--------------------------|:----------------------------|
-![COVID-19 preprints per week - medRxiv](outputs/figures/CHSL_comparison/covid19_preprints_published_compare_Crossref_medRxiv_week.png) | ![COVID-19 preprints per week - bioRxiv](outputs/figures/preprints_published/CHSL_comparison/covid19_preprints_published_compare_Crossref_bioRxiv_week.png)
+![COVID-19 preprints per week - medRxiv](outputs/figures/CSHL_comparison/covid19_preprints_published_compare_Crossref_medRxiv_week.png) | ![COVID-19 preprints per week - bioRxiv](outputs/figures/CSHL_comparison/covid19_preprints_published_compare_Crossref_bioRxiv_week.png)
 
+![percentage of preprints linked to published papers](outputs/figures/preprints_published/covid19_preprints_published_percentage.png)
 ![days to publish](outputs/figures/days_to_publish/days_to_publish_sources.png)
-Days to publish
-
