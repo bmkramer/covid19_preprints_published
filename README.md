@@ -53,5 +53,9 @@ medRxiv (n=7370) | bioRxiv (n=2167)
 :--------------------------|:----------------------------|
 ![COVID-19 preprints per week - medRxiv](outputs/figures/CSHL_comparison/covid19_preprints_published_compare_Crossref_medRxiv_week.png) | ![COVID-19 preprints per week - bioRxiv](outputs/figures/CSHL_comparison/covid19_preprints_published_compare_Crossref_bioRxiv_week.png)
 
-![preprint_destination](outputs/figures/destination/covid19_preprints_destination.png)
+Destination of preprints linked to published papers (1843) | .
+:--------------------------|:----------------------------|
+![preprint_destination](outputs/figures/destination/covid19_preprints_destination.png) | ![empty](outputs/figures/preprints_published/empty.png)
+
+
 
