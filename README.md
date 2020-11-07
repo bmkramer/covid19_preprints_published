@@ -30,7 +30,7 @@ To investigate this further, we looked at a) links to published papers displayed
 
 -----------------------------------------------------------------------------------------------
 
-Percentage of preprints linked to published papers | medRxiv (n=7370)
+Preprints linked to published papers | medRxiv (n=7370)
 :--------------------------|:----------------------------|
 ![percentage of preprints linked to published papers](outputs/figures/preprints_published/covid19_preprints_published_percentage.png) | ![COVID-19 preprints per week - medRxiv](outputs/figures/preprints_published/covid19_preprints_published_medRxiv_week.png)
 
