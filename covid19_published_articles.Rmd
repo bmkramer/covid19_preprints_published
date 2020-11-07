@@ -240,12 +240,7 @@ origin_levels <- c("JMIR",
                    "OSF",
                    "other")
 
-destination_levels <- c("JMIR ",
-                        "Springer Nature",
-                        "MDPI",
-                        "ACS",
-                        "other ",
-                        "publisher not retrieved")
+ 
 
 #create plot
 p3 <- covid_preprints_destination %>%
@@ -273,7 +268,20 @@ p3 <- covid_preprints_destination %>%
         panel.grid.major = element_blank(),
         panel.grid.minor = element_blank()) +
   scale_fill_manual(values = pal_3) +
-  ggsave("outputs/figures/destination/covid19_preprints_destination.png", width = 5, height = 8)
+  ggsave("outputs/figures/destination/covid19_preprints_destination.png", width = 12, height = 18)
 
 #NB Alternative (non-lazy) approach to accommodate identical levels in origin and destination: transform data into long format and set one level vector
 #see https://stackoverflow.com/questions/48346546/ggalluvial-ordering-stratum (this also uses geom_flow instead of geom_alluvium)
+```
+
+```{r message = FALSE, warning = FALSE}
+
+# Create empty figure for table layout in Readme
+
+ggplot() + 
+  theme_void() + 
+  ggsave(paste0("outputs/figures/preprints_published/empty.png"), 
+         width = 12, 
+         height = 6)
+
+```
