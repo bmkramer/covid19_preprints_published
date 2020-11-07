@@ -11,7 +11,7 @@ output: github_document
 library(lubridate)
 library(rcrossref)
 library(tidyverse)
-library(jsonlite)
+library(ggalluvial)
 ```
 
 
@@ -20,7 +20,7 @@ library(jsonlite)
 # (publication date, journal, publisher)
 
 
-```{r}
+```{r message = FALSE, warning = FALSE, cache = TRUE}
  
 published_dois <- covid_preprints_published %>%
   filter(!is.na(preprint_of_doi)) %>%
@@ -53,7 +53,7 @@ rm(published_articles_data, published_dois)
 # Merge preprints and published articles data
 
 
-```{r}
+```{r message = FALSE, warning = FALSE}
 
 
 covid_preprints_time_to_publish <- covid_preprints_published %>%
@@ -64,13 +64,13 @@ covid_preprints_time_to_publish <- covid_preprints_published %>%
 
 write_csv(covid_preprints_time_to_publish, "data/covid19_preprints_time_to_publish.csv")
 
-covid19_preprints_time_to_publish <- read_csv("data/covid19_preprints_time_to_publish.csv")
+covid_preprints_time_to_publish <- read_csv("data/covid19_preprints_time_to_publish.csv")
 
 ```
 
 #Visualizations
 
-```{r}
+```{r message = FALSE, warning = FALSE}
 # Theme options
 theme_set(theme_minimal() +
             theme(text = element_text(size = 10),
@@ -93,10 +93,13 @@ pal_1 <- colorspace::lighten(pals::tol(n = 10), amount = 0.2)
 pal_2 <- colorspace::lighten(pals::tol(n = 10), amount = 0.4)
 palette <- c(pal_1, pal_2)
 
+#palette for alluvial plot
+pal_3 <- pals::tol(n=10)
+
 ```
 
-```{r}
-# Publishing timeline
+```{r message = FALSE, warning = FALSE}
+#Set parameters for use in visualizations
 
 # manually check min/max delay to set chart parameters
 min_days <- min(covid_preprints_time_to_publish$delay_in_days,
@@ -104,7 +107,33 @@ min_days <- min(covid_preprints_time_to_publish$delay_in_days,
 max_days <- max(covid_preprints_time_to_publish$delay_in_days,
            na.rm=TRUE)
 
-p1 <- covid19_preprints_time_to_publish %>%
+# Group all OSF preprints together
+OSF_names <- covid_preprints_time_to_publish %>%
+  count(source) %>%
+  filter(str_detect(source, "OSF")) %>%
+  arrange(desc(n)) %>%
+  pull(source)
+
+#create vector of names of servers w/ linked preprints
+#in descending order of number of preprints
+servers_selected <- covid_preprints_time_to_publish %>%
+  mutate(source = case_when(
+    source %in% OSF_names ~ "OSF",
+    TRUE ~ source)) %>%
+  group_by(source) %>%
+  summarise_all(~ sum(!is.na(.))) %>%
+  ungroup() %>%
+  filter(is_preprint_of > 0) %>%
+  arrange(desc(identifier)) %>%
+  slice(1:7) %>%
+  pull(source)
+
+```
+
+```{r message = FALSE, warning = FALSE}
+# Publishing timeline
+
+p1 <- covid_preprints_time_to_publish %>%
   mutate(covid_preprint = "covid_preprint") %>%
   filter(!is.na(delay_in_days)) %>%
   mutate(pub_bracket = cut(as.numeric(delay_in_days), 
@@ -130,38 +159,10 @@ p1 <- covid19_preprints_time_to_publish %>%
 
 ```
 
-```{r}
+```{r message = FALSE, warning = FALSE}
 # Time to publication for different preprint servers
 
-# manually check min/max delay to set chart parameters
-min_days <- min(covid_preprints_time_to_publish$delay_in_days,
-           na.rm=TRUE)
-max_days <- max(covid_preprints_time_to_publish$delay_in_days,
-           na.rm=TRUE)
-
-# Group all OSF preprints together
-OSF_names <- covid_preprints_time_to_publish %>%
-  count(source) %>%
-  filter(str_detect(source, "OSF")) %>%
-  arrange(desc(n)) %>%
-  pull(source)
-
-#create vector of names of servers w/ linked preprints
-#in descending order of number of preprints
-servers_selected <- covid19_preprints_time_to_publish %>%
-  mutate(source = case_when(
-    source %in% OSF_names ~ "OSF",
-    TRUE ~ source)) %>%
-  group_by(source) %>%
-  summarise_all(~ sum(!is.na(.))) %>%
-  ungroup() %>%
-  filter(is_preprint_of > 0) %>%
-  arrange(desc(identifier)) %>%
-  slice(1:7) %>%
-  pull(source)
-
-
-p2 <- covid19_preprints_time_to_publish %>%
+p2 <- covid_preprints_time_to_publish %>%
   mutate(covid_preprint = "covid_preprint") %>%
   mutate(source = case_when(
     source %in% OSF_names ~ "OSF",
@@ -187,3 +188,92 @@ p2 <- covid19_preprints_time_to_publish %>%
   guides(fill = FALSE, colour = FALSE) +
   ggsave("outputs/figures/days_to_publish/days_to_publish_sources.png", width = 12, height = 6) 
 ```
+
+```{r message = FALSE, warning = FALSE}
+
+#create alluvial diagram
+
+covid_preprints_destination <- covid_preprints_time_to_publish %>%
+  filter(!is.na(is_preprint_of)) %>%
+  select(source, published_publisher) %>%
+  mutate(source = case_when(
+    source %in% OSF_names ~ "OSF",
+    TRUE ~ source)) %>%
+  mutate(source = case_when(
+    source %in% servers_selected ~ source,
+    TRUE ~ "other"))
+
+#create lookup table for publisher names 
+#use "JMIR " and "other " to distinguish from source names
+#this is a lazy shortcut to enable ordering of levels in plot
+publisher <- covid_preprints_destination %>%
+  count(published_publisher) %>%
+  arrange(desc(n)) %>%
+  mutate(publisher = case_when(
+    published_publisher == "JMIR Publications Inc." ~ "JMIR ",
+    published_publisher == "Springer Science and Business Media LLC" ~ "Springer Nature",
+    #published_publisher == "Elsevier BV" ~ "Elsevier",
+    published_publisher == "MDPI AG" ~ "MDPI",
+    #published_publisher == "Wiley" ~ "Wiley",
+    #published_publisher == "Frontiers Media SA" ~ "Frontiers",
+    #published_publisher == "Oxford University Press (OUP)" ~ "OUP",
+    #published_publisher == "American Society for Microbiology" ~ "ASM",
+    published_publisher == "American Chemical Society (ACS)" ~ "ACS",
+    #published_publisher == "Informa UK Limited" ~ "T&F",
+    is.na(published_publisher)  ~ "publisher not retrieved",
+    TRUE ~ "other ")) %>%
+  select(-n)
+
+#replace publisher names
+covid_preprints_destination <- covid_preprints_destination %>%
+  left_join(publisher)
+
+#create vectors for server/publisher names, ordered for use in graphs. NB Take care to use "JMIR " and "other " in destination_levels
+
+#for origin, add one element to 'servers_selected'
+origin_levels <- c("JMIR",
+                   "Research Square",
+                   "Preprints.org",
+                   "ChemRxiv",
+                   "medRxiv",
+                   "bioRxiv",
+                   "OSF",
+                   "other")
+
+destination_levels <- c("JMIR ",
+                        "Springer Nature",
+                        "MDPI",
+                        "ACS",
+                        "other ",
+                        "publisher not retrieved")
+
+#create plot
+p3 <- covid_preprints_destination %>%
+  mutate(origin = factor(source, levels = origin_levels),
+         destination = factor(publisher, levels = destination_levels)) %>%
+  group_by(origin, destination) %>%
+  summarize(freq = n()) %>%
+  ungroup() %>%
+  #filter(freq >= 5) %>%
+  ggplot(aes(axis1 = origin, 
+             axis2 = destination, 
+             y = freq)) +
+  scale_x_discrete(limits = c("Preprint server", "Publisher"), 
+                   expand = c(0, 0)) +
+  scale_y_continuous(expand = c(0, 0)) +
+  labs(title = paste0("Destination of preprints with links to published papers (n=",nrow(covid_preprints_destination),")")) +
+  geom_alluvium(aes(fill = origin), reverse = TRUE) +
+  geom_stratum(reverse = TRUE, color = "grey50") + 
+  geom_text(aes(label = after_stat(stratum)), size = 2.5, stat = "stratum", 
+            reverse = TRUE, color = "grey25") +
+  guides(fill = FALSE) +
+  theme(axis.title.y = element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank()) +
+  scale_fill_manual(values = pal_3) +
+  ggsave("outputs/figures/destination/covid19_preprints_destination.png", width = 5, height = 8)
+
+#NB Alternative (non-lazy) approach to accommodate identical levels in origin and destination: transform data into long format and set one level vector
+#see https://stackoverflow.com/questions/48346546/ggalluvial-ordering-stratum (this also uses geom_flow instead of geom_alluvium)

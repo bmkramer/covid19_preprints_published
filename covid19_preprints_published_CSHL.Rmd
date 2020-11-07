@@ -23,7 +23,7 @@ library(colorspace)
 # Set sample date
 # Retrieve the latest sample date for preprints
 
-```{r}
+```{r message = FALSE, warning = FALSE}
 sample_date <- Sys.Date()
 
 sample_date_preprints <- fromJSON(
@@ -40,7 +40,7 @@ sample_date_preprints <- sample_date_preprints %>%
 # Retrieve preprint metadata via bioRxiv API
 # script adapted from [Preprinting a pandemic - preprint_details.Rmd](https://github.com/preprinting-a-pandemic/pandemic_preprints/blob/master/preprint_details.Rmd)
 
-```{r}
+```{r message = FALSE, warning = FALSE, cache = TRUE}
 # See https://api.biorxiv.org for details
 # Note that the API allows querying of both bioRxiv and medRxiv via the 
 # 'server' parameter (although this is not documented)
@@ -79,7 +79,7 @@ preprint_data <- purrr::map(c("biorxiv", "medrxiv"), getPreprintData)
 ```
 
 
-```{r cache = TRUE}
+```{r message = FALSE, warning = FALSE, cache = TRUE}
 parsePreprintData <- function(item) {
   tibble(
     source = item$server,
@@ -108,7 +108,7 @@ preprints_all <- map_dfr(preprint_data, ~ map_df(.x, parsePreprintData)) %>%
 
 # Match to list of COVID19-preprints collected from Crossref
 
-```{r}
+```{r message = FALSE, warning = FALSE}
 preprints_crossref <- read_csv("data/covid19_preprints_published.csv")
 
 preprints_matched <- preprints_crossref %>%
@@ -125,11 +125,10 @@ write_csv(preprints_matched, "data/covid19_preprints_published_CSHLmatch.csv")
 
 # Check matches from Crossref with matches from bioRxiv/medRxiv directly
 
-```{r}
+```{r message = FALSE, warning = FALSE}
 
 match_check <- preprints_matched %>%
   count(source, is_preprint_of, is_published_CSHL)
-
 
 ```
 

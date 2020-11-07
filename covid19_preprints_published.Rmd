@@ -29,7 +29,7 @@ library(colorspace)
 # Set sample date
 # Retrieve the latest sample date for preprints
 
-```{r}
+```{r message = FALSE, warning = FALSE}
 sample_date <- Sys.Date()
 
 sample_date_preprints <- fromJSON(
@@ -47,7 +47,7 @@ sample_date_preprints <- sample_date_preprints %>%
 
 This script uses the dataset on preprints collated here: [Covid19 Preprints](https://github.com/nicholasmfraser/covid19_preprints)
 
-```{r}
+```{r message = FALSE, warning = FALSE}
 
 covid_preprints <- read_csv("https://raw.githubusercontent.com/nicholasmfraser/covid19_preprints/master/data/covid19_preprints.csv")
 
@@ -109,7 +109,7 @@ rm(cr_dois, cr_dois_message)
 
 The dataset containing all Covid19 related preprints and the dataset containing information on published articles (from Crossref) are merged and to get a final dataset containing all Crossref preprints with information on linked published articles
 
-```{r message = FALSE, warning = FALSE, cache = TRUE}
+```{r message = FALSE, warning = FALSE}
 
 covid_preprints_published <- covid_preprints %>%
   right_join(cr_dois_df, by = c("identifier" = "DOI")) %>%
@@ -122,8 +122,6 @@ covid_preprints_published %>%
 count <- covid_preprints_published %>%
   #filter(!is.na(is_preprint_of)) %>%
   count(source)
-
-
   
 ```
 
