@@ -53,30 +53,8 @@ medRxiv (n=7370) | bioRxiv (n=2167)
 :--------------------------|:----------------------------|
 ![COVID-19 preprints per week - medRxiv](outputs/figures/CSHL_comparison/covid19_preprints_published_compare_Crossref_medRxiv_week.png) | ![COVID-19 preprints per week - bioRxiv](outputs/figures/CSHL_comparison/covid19_preprints_published_compare_Crossref_bioRxiv_week.png)
 
-Destination of preprints linked to published papers (1843) | .
+<div style="width:600px">Destination of preprints linked to published papers (1843)</div> | <div style="width:600px">.</div>
 :--------------------------|:----------------------------|
 ![preprint_destination](outputs/figures/destination/covid19_preprints_destination.png) | ![empty](outputs/figures/preprints_published/empty.png)
 
 
-
-<table>
-<thead>
-	<tr>
-		<th>Header 1</th>
-		<th>Header 2</th>
-		<th>Header :</th>
-	</tr>
-</thead>
-<tbody>
-	<tr>
-		<td>Column 1</td>
-		<td>Column 2</td>
-		<td>Column 3</td>
-	</tr>
-	<tr>
-		<td>Custom Table Content</td>
-		<td>Column 4</td>
-		<td>Column 5</td>
-	</tr>
-</tbody>
-</table>
