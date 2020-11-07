@@ -43,19 +43,15 @@ JMIR Preprints (n=1083) | Preprints.org (n=990)
 :--------------------------|:----------------------------|
 ![COVID-19 preprints per week - JMIR](outputs/figures/preprints_published/covid19_preprints_published_JMIR_week.png) | ![COVID-19 preprints per week - Preprints.org](outputs/figures/preprints_published/covid19_preprints_published_Preprints.org_week.png)
 
-ChemRxiv (n=415) | .
+ChemRxiv (n=415) | Percentage of preprints linked to published papers
 :--------------------------|:----------------------------|
-![COVID-19 preprints per week - ChemRXiv](outputs/figures/preprints_published/covid19_preprints_published_ChemRxiv_week.png) | ![empty](outputs/figures/preprints_published/empty.png)
-
-
-Percentage of preprints linked to published papers | Days to publish
-:--------------------------|:----------------------------|
-![percentage of preprints linked to published papers](outputs/figures/preprints_published/covid19_preprints_published_percentage.png) | ![days to publish](outputs/figures/days_to_publish/days_to_publish_sources.png)
-
+![COVID-19 preprints per week - ChemRXiv](outputs/figures/preprints_published/covid19_preprints_published_ChemRxiv_week.png) | ![percentage of preprints linked to published papers](outputs/figures/preprints_published/covid19_preprints_published_percentage.png)
 
 medRxiv (n=7370) | bioRxiv (n=2167)
 :--------------------------|:----------------------------|
 ![COVID-19 preprints per week - medRxiv](outputs/figures/CSHL_comparison/covid19_preprints_published_compare_Crossref_medRxiv_week.png) | ![COVID-19 preprints per week - bioRxiv](outputs/figures/CSHL_comparison/covid19_preprints_published_compare_Crossref_bioRxiv_week.png)
 
-![percentage of preprints linked to published papers](outputs/figures/preprints_published/covid19_preprints_published_percentage.png)
-![days to publish](outputs/figures/days_to_publish/days_to_publish_sources.png)
+Days to publish | .
+:--------------------------|:----------------------------|
+![days to publish](outputs/figures/days_to_publish/days_to_publish_sources.png) | ![empty](outputs/figures/preprints_published/empty.png)
+
