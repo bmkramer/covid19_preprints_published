@@ -55,6 +55,6 @@ medRxiv (n=7370) | bioRxiv (n=2167)
 
 Destination of preprints linked to published papers (1348)|.
 :----------------------------|:--------------------------|
-![preprint_destination](outputs/figures/destination/covid19_preprints_destination.png) | ![empty](outputs/figures/preprints_published/empty.png)
+![preprint_destination](outputs/figures/destination/covid19_preprints_destination.png) | ![empty](outputs/figures/destination/empty.png)
 
 
