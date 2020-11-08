@@ -63,7 +63,7 @@ covid_preprints_time_to_publish <- covid_preprints_published %>%
 
 write_csv(covid_preprints_time_to_publish, "data/covid19_preprints_time_to_publish.csv")
 
-#covid_preprints_time_to_publish <- read_csv("data/covid19_preprints_time_to_publish.csv")
+covid_preprints_time_to_publish <- read_csv("data/covid19_preprints_time_to_publish.csv")
 
 ```
 
@@ -282,7 +282,7 @@ p3 <- covid_preprints_destination %>%
 ggplot() + 
   theme_void() + 
   ggsave(paste0("outputs/figures/destination/empty.png"), 
-         width = 12, 
+         width = 6, 
          height = 18)
 
 ```

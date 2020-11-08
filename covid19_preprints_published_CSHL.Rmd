@@ -186,7 +186,7 @@ preprints_matched_time_to_publish <- preprints_matched %>%
 
 write_csv(preprints_matched_time_to_publish, "data/covid19_preprints_published_CSHL_time_to_publish.csv")
 
-#covid_preprints_time_to_publish <- read_csv("data/covid19_preprints_published_CSHL_time_to_publish")
+#preprints_matched_time_to_publish <- read_csv("data/covid19_preprints_published_CSHL_time_to_publish.csv")
 
 ```
 
@@ -263,7 +263,7 @@ p1 <- preprints_matched %>%
   ggplot(aes(x = posted_week, y = n, 
              fill = forcats::fct_rev(status))) +
   geom_col() +
-  labs(x = "Posted Date (week beginning)", y = "Preprints", fill = paste0("status (from Crossref) and ", var),
+  labs(x = "Posted Date (week beginning)", y = "Preprints", fill = paste0("status (from Crossref and ", var, ")"),
        title = paste0("COVID-19 preprints per week on ",var), 
        subtitle = paste0("(preprints up until ", sample_date_preprints, ", sample date ", sample_date,")")
        ) +
@@ -299,13 +299,13 @@ p2 <- preprints_matched_time_to_publish %>%
               position = position_jitterdodge(jitter.width = 0.5)) + 
   labs(x = "", y = str_wrap("Time from preprint posting to publication (days)", 30), 
        fill = "", color = "") +
-  scale_color_manual(values = palette[2]) +
-  scale_fill_manual(values = palette[2]) +
+  scale_color_manual(values = palette[2:3]) +
+  scale_fill_manual(values = palette[2:3]) +
   scale_y_continuous(breaks=seq(-120,240,30)) +
   theme(axis.text.x = element_text(size = 10, angle = 45, hjust = 1),
         legend.position = "top") +
   guides(fill = FALSE, colour = FALSE) +
-  ggsave("outputs/figures/days_to_publish/days_to_publish_sources.png", width = 12, height = 6) 
+  ggsave("outputs/figures/CSHL_comparison/days_to_publish_CSHL_comparison.png", width = 12, height = 6) 
 ```
 
 ``` {r}
