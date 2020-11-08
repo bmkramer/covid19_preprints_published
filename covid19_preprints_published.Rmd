@@ -118,10 +118,9 @@ covid_preprints_published <- covid_preprints %>%
 covid_preprints_published %>%
   write_csv("data/covid19_preprints_published.csv")
 
+#covid_preprints_published <- 
+  read_csv("data/covid19_preprints_published.csv")
 
-count <- covid_preprints_published %>%
-  #filter(!is.na(is_preprint_of)) %>%
-  count(source)
   
 ```
 

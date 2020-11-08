@@ -19,7 +19,6 @@ library(ggalluvial)
 # Get published article metadata via Crossref 
 # (publication date, journal, publisher)
 
-
 ```{r message = FALSE, warning = FALSE, cache = TRUE}
  
 published_dois <- covid_preprints_published %>%
@@ -64,7 +63,7 @@ covid_preprints_time_to_publish <- covid_preprints_published %>%
 
 write_csv(covid_preprints_time_to_publish, "data/covid19_preprints_time_to_publish.csv")
 
-covid_preprints_time_to_publish <- read_csv("data/covid19_preprints_time_to_publish.csv")
+#covid_preprints_time_to_publish <- read_csv("data/covid19_preprints_time_to_publish.csv")
 
 ```
 
@@ -259,10 +258,12 @@ p3 <- covid_preprints_destination %>%
   labs(title = paste0("Destination of preprints with links to published papers (n=",nrow(covid_preprints_destination),")")) +
   geom_alluvium(aes(fill = origin), reverse = TRUE) +
   geom_stratum(reverse = TRUE, color = "grey50") + 
-  geom_text(aes(label = after_stat(stratum)), size = 2.5, stat = "stratum", 
+  geom_text(aes(label = after_stat(stratum)), size = 6, stat = "stratum", 
             reverse = TRUE, color = "grey25") +
   guides(fill = FALSE) +
-  theme(axis.title.y = element_blank(),
+  theme(plot.title = element_text(size = 20),
+        axis.text.x = element_text(size = 18, face = "bold"),
+        axis.title.y = element_blank(),
         axis.text.y = element_blank(),
         axis.ticks.y = element_blank(),
         panel.grid.major = element_blank(),
@@ -280,8 +281,8 @@ p3 <- covid_preprints_destination %>%
 
 ggplot() + 
   theme_void() + 
-  ggsave(paste0("outputs/figures/preprints_published/empty.png"), 
+  ggsave(paste0("outputs/figures/destination/empty.png"), 
          width = 12, 
-         height = 6)
+         height = 18)
 
 ```
