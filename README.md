@@ -22,10 +22,10 @@ Overall, the rate of COVID19-related preprints with links to published papers in
 
 Among the preprint servers that do include links to published papers in their metadata, there are interesting differences in the proportion of preprints linked to published papers, with percentages ranging from 3% (for medRxiv) to 38% (for JMIR) (Figures 2, 3). These could reflect both technical workflows (e.g. linking  might be easier/quicker when preprint server and journals are from the same publisher) and publication practices (e.g. selectivity of journals, speed of peer review processes, decisions on when to post a preprint).
 
-To investigate this further, I looked at 
-* a) time to publication for preprints from different preprint servers, 
-* b) links to published papers displayed on the preprint platform itself, compared to information in Crossref metadata (for medRXiv and bioRXiv)
-* c) the destination of preprints that get subsequently published, in relation to the preprint server they were posted on. 
+To investigate this further, I also looked at: 
+* time to publication for preprints from different preprint servers, 
+* links to published papers displayed on the preprint platform itself, compared to information in Crossref metadata (for medRXiv and bioRXiv)
+* the destination of preprints that get subsequently published, in relation to the preprint server they were posted on. 
 
 ![](outputs/figures/preprints_published/covid19_preprints_published_week.png)
 
