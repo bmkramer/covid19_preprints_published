@@ -18,9 +18,9 @@ For example, SRRN (n=3772 COVID19-related preprints), Authorea (n=894), and Scie
 In short, the proportions shown here represent the **lower bound of preprints that have subsequently been published as journal articles**, and as such, are as much a **reflection on the uptake of metadata linking** as on the actual rate of preprints that get published as journal articles.
 
 ### Results
-Overall, the rate of preprints with a links to published paper in their metadata is only 6%,  (1348 of 22905 (6%) identified COVID-preprints with Crossref DOI). However,  
+Overall, the rate of COVID19-related preprints with links to published papers in their metadata is only 6% (1348 of 22905 preprints with Crossref DOI). However, as explained above, a number of preprint servers do not add these links to the metadata of their preprints at all, and for those that do the coverage may be incomplete and/or delayed. 
 
-Among the preprint servers that do include links to published papers in their metadata, there are interesting differences in the proportion of preprints linked to published papers, with percentages ranging from  (Figures 2, 3). These could reflect both technical workflows (e.g. linking  might be easier/quicker when preprint server and journals are from the same publisher) and publication practices (e.g. selectivity of journals, speed of peer review processes, decisions on when to post a preprint).
+Among the preprint servers that do include links to published papers in their metadata, there are interesting differences in the proportion of preprints linked to published papers, with percentages ranging from 3% (for medRxiv) to 38% (for JMIR) (Figures 2, 3). These could reflect both technical workflows (e.g. linking  might be easier/quicker when preprint server and journals are from the same publisher) and publication practices (e.g. selectivity of journals, speed of peer review processes, decisions on when to post a preprint).
 
 To investigate this further, we looked at a) links to published papers displayed on the preprint platform itself, compared to information in Crossref metadata (for medRXiv and bioRXiv), b) time to publication for preprints from different preprint servers, and c) the destination of preprints that get subsequently published, in relation to the preprint server they were posted on. 
 
