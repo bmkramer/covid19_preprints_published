@@ -25,7 +25,7 @@ Among the preprint servers that do include links to published papers in their me
 To investigate this further, I also looked at: 
 * time to publication for preprints from different preprint servers, 
 * links to published papers displayed on the preprint platform itself, compared to information in Crossref metadata (for medRXiv and bioRXiv)
-* the destination of preprints that get subsequently published, in relation to the preprint server they were posted on. 
+* the destination of preprints that get subsequently published, in relation to the preprint server they were posted on, with special attention to publishers preprint servers are specifically linked to. 
 
 ![](outputs/figures/preprints_published/covid19_preprints_published_week.png)
 
