@@ -1,6 +1,6 @@
 # COVID-19 preprints linked to published journal articles - based on Crossref metadata
 
-*work in progress]*
+*[work in progress]*
 
 This repository contains code used to extract details of the COVID-19 related preprints that are linked to published journal articles, and visualize their distribution over time (building on [COVID-19 Preprints](https://github.com/nicholasmfraser/covid19_preprints) by [Nicholas Fraser](https://orcid.org/0000-0002-7582-6339) and [Bianca Kramer](https://orcid.org/0000-0002-5965-6560))
 
