@@ -105,6 +105,9 @@ preprints_all <- map_dfr(preprint_data, ~ map_df(.x, parsePreprintData)) %>%
 # 59584 -> 47713, of which 7444 with published version
 # NB confirmed 47713 unique dois 
 
+#20201127 51946 unique, of which 9833 published
+
+
 ```
 
 # Match to list of COVID19-preprints collected from Crossref
@@ -113,16 +116,18 @@ preprints_all <- map_dfr(preprint_data, ~ map_df(.x, parsePreprintData)) %>%
 preprints_crossref <- read_csv("data/covid19_preprints_published.csv")
 
 preprints_matched <- preprints_crossref %>%
-  left_join(preprints_all_2, by = c("identifier" = "doi")) %>%
+  left_join(preprints_all, by = c("identifier" = "doi")) %>%
   select(-`source.y`) %>%
   rename(source =`source.x`) %>%
   filter(source %in% c("bioRxiv", "medRxiv")) %>%
   rename(is_published_CSHL = is_published,
-         published_doi_CSHL = published_doi)
+         published_doi_CSHL = published_doi) %>%
+  distinct()
 
 write_csv(preprints_matched, "data/covid19_preprints_published_CSHL.csv")
 
-#preprints_matched <- read_csv("data/covid19_preprints_published_CSHL.csv")
+preprints_matched <-
+  read_csv("data/covid19_preprints_published_CSHL.csv")
 
 ```
 
@@ -186,7 +191,8 @@ preprints_matched_time_to_publish <- preprints_matched %>%
 
 write_csv(preprints_matched_time_to_publish, "data/covid19_preprints_published_CSHL_time_to_publish.csv")
 
-#preprints_matched_time_to_publish <- read_csv("data/covid19_preprints_published_CSHL_time_to_publish.csv")
+preprints_matched_time_to_publish <-
+  read_csv("data/covid19_preprints_published_CSHL_time_to_publish.csv")
 
 ```
 
@@ -241,7 +247,7 @@ max_days <- max(preprints_matched_time_to_publish$delay_in_days,
 # Weekly preprint counts - per preprint server
 
 # Select source to display in graph
-var <- source_count[1]
+var <- source_count[2]
 
 # Create graph
 p1 <- preprints_matched %>%
@@ -295,7 +301,7 @@ p2 <- preprints_matched_time_to_publish %>%
   ggplot(aes(x = source, y = delay_in_days, color = covid_preprint)) +
   geom_boxplot(outlier.shape = NA) +
   geom_jitter(aes(fill = factor(covid_preprint)),
-              shape = 21, size = 0.2, alpha = 0.2,
+              shape = 21, size = 0.5, alpha = 0.5,
               position = position_jitterdodge(jitter.width = 0.5)) + 
   labs(x = "", y = str_wrap("Time from preprint posting to publication (days)", 30), 
        fill = "", color = "") +
@@ -341,3 +347,4 @@ pS2F <- preprints %>%
   guides(fill = FALSE, colour = FALSE) +
   ggsave("outputs/figures/partials/Figure_S2F.png", width = 5, height = 4) 
 ```
+

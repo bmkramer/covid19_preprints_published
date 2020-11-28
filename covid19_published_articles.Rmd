@@ -129,7 +129,7 @@ servers_selected <- covid_preprints_time_to_publish %>%
 
 ```
 
-```{r message = FALSE, warning = FALSE}
+```{r message = FALSE, warning = FALSE, include = FALSE}
 # Publishing timeline
 
 p1 <- covid_preprints_time_to_publish %>%
@@ -158,7 +158,7 @@ p1 <- covid_preprints_time_to_publish %>%
 
 ```
 
-```{r message = FALSE, warning = FALSE}
+```{r message = FALSE, warning = FALSE, include = FALSE}
 # Time to publication for different preprint servers
 
 p2 <- covid_preprints_time_to_publish %>%
@@ -175,7 +175,7 @@ p2 <- covid_preprints_time_to_publish %>%
   ggplot(aes(x = source, y = delay_in_days, color = covid_preprint)) +
   geom_boxplot(outlier.shape = NA) +
   geom_jitter(aes(fill = factor(covid_preprint)),
-              shape = 21, size = 0.2, alpha = 0.2,
+              shape = 21, size = 0.5, alpha = 0.5,
               position = position_jitterdodge(jitter.width = 0.5)) + 
   labs(x = "", y = str_wrap("Time from preprint posting to publication (days)", 30), 
        fill = "", color = "") +
@@ -188,7 +188,7 @@ p2 <- covid_preprints_time_to_publish %>%
   ggsave("outputs/figures/days_to_publish/days_to_publish_sources.png", width = 12, height = 6) 
 ```
 
-```{r message = FALSE, warning = FALSE}
+```{r message = FALSE, warning = FALSE, include = FALSE}
 
 #create alluvial diagram
 
@@ -227,7 +227,7 @@ publisher <- covid_preprints_destination %>%
 covid_preprints_destination <- covid_preprints_destination %>%
   left_join(publisher)
 
-#create vectors for server/publisher names, ordered for use in graphs. NB Take care to use "JMIR " and "other " in destination_levels
+#create vectors for server/publisher names, manually ordered for use in graphs. NB Take care to use "JMIR " and "other " in destination_levels
 
 #for origin, add one element to 'servers_selected'
 origin_levels <- c("JMIR",
@@ -239,7 +239,12 @@ origin_levels <- c("JMIR",
                    "OSF",
                    "other")
 
- 
+destination_levels <- c("JMIR ",
+                   "Springer Nature",
+                   "MDPI",
+                   "ACS",
+                   "other ",
+                   "publisher not retrieved") 
 
 #create plot
 p3 <- covid_preprints_destination %>%
@@ -275,7 +280,7 @@ p3 <- covid_preprints_destination %>%
 #see https://stackoverflow.com/questions/48346546/ggalluvial-ordering-stratum (this also uses geom_flow instead of geom_alluvium)
 ```
 
-```{r message = FALSE, warning = FALSE}
+```{r message = FALSE, warning = FALSE, include = FALSE}
 
 # Create empty figure for table layout in Readme
 

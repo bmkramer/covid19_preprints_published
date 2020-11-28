@@ -112,13 +112,12 @@ The dataset containing all Covid19 related preprints and the dataset containing 
 ```{r message = FALSE, warning = FALSE}
 
 covid_preprints_published <- covid_preprints %>%
-  right_join(cr_dois_df, by = c("identifier" = "DOI")) %>%
-  rename(preprint_of_doi = preprint_of_DOI)
+  right_join(cr_dois_df, by = c("identifier" = "DOI"))
 
 covid_preprints_published %>%
   write_csv("data/covid19_preprints_published.csv")
 
-#covid_preprints_published <- 
+covid_preprints_published <- 
   read_csv("data/covid19_preprints_published.csv")
 
   
@@ -164,7 +163,7 @@ palette <- c(pal_1, pal_2)
 ```
 
 
-```{r message = FALSE, warning = FALSE}
+```{r message = FALSE, warning = FALSE, include = FALSE}
 # Weekly preprint counts
 
 covid_preprints_published %>%
@@ -193,7 +192,7 @@ covid_preprints_published %>%
 ```
 
 
-```{r message = FALSE, warning = FALSE}
+```{r message = FALSE, warning = FALSE, include = FALSE}
 # Cumulative daily preprint counts
 covid_preprints_published %>%
   mutate(
@@ -222,7 +221,7 @@ covid_preprints_published %>%
   ggsave("outputs/figures/preprints_published/covid19_preprints_published_day_cumulative.png", width = 12, height = 6)
 ```
 
-```{r message = FALSE, warning = FALSE}
+```{r message = FALSE, warning = FALSE, include = FALSE}
 # For graphs per preprint server
 
 # Group all OSF preprints together
@@ -237,22 +236,30 @@ covid_preprints_published_viz <- covid_preprints_published %>%
     source %in% OSF_names ~ "OSF",
     TRUE ~ source))
 
-# Create vector with sources in order of descending number of preprints 
-source_count <- covid_preprints_published_viz %>%
-  #filter(!is.na(is_preprint_of)) %>%
-  count(source) %>%
-  arrange(desc(n)) %>%
+#create vector of names of servers w/ linked preprints
+#in descending order of number of preprints
+servers_selected <- covid_preprints_published_viz %>%
+  mutate(source = case_when(
+    source %in% OSF_names ~ "OSF",
+    TRUE ~ source)) %>%
+  group_by(source) %>%
+  summarise_all(~ sum(!is.na(.))) %>%
+  ungroup() %>%
+  filter(is_preprint_of > 0) %>%
+  arrange(desc(identifier)) %>%
+  slice(1:7) %>%
   pull(source)
+
 
 ```
 
 
-```{r message = FALSE, warning = FALSE}
+```{r message=FALSE, warning=FALSE, include = FALSE}
 
 # Weekly preprint counts - per preprint server
 
 # Select source to display in graph
-var <- source_count[7]
+var <- servers_selected[11]
 
 # Create graph
 covid_preprints_published_viz %>%
@@ -285,11 +292,11 @@ covid_preprints_published_viz %>%
 ```
 
 
-```{r}
+```{r r message=FALSE, warning=FALSE, include = FALSE}
 #Percentage of preprints published
 
 covid_preprints_published_viz %>% 
-  filter(source %in% source_count[1:7]) %>%
+  filter(source %in% servers_selected) %>%
   count(source, is_preprint_of) %>%
   group_by(source) %>%
   mutate(prop = n*100 / sum(n),
@@ -316,7 +323,7 @@ covid_preprints_published_viz %>%
 ```
 
 
-```{r message = FALSE, warning = FALSE}
+```{r message = FALSE, warning = FALSE, include = FALSE}
 
 # Create empty figure for table layout in Readme
 
