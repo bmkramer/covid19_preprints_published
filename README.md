@@ -5,7 +5,7 @@
 This repository contains code used to extract details of the COVID-19 related preprints that are linked to published journal articles, and visualize their distribution over time (building on [COVID-19 Preprints](https://github.com/nicholasmfraser/covid19_preprints) by [Nicholas Fraser](https://orcid.org/0000-0002-7582-6339) and [Bianca Kramer](https://orcid.org/0000-0002-5965-6560))
 
 
-The process for collecting preprint metadata is documented fully [here](covid19_preprints_published.Rmd). In general terms, preprint metadata harvested from Crossref were enriched with data on linked published journal articles using the metadata field `relation.is-preprint-of` in Crossref. Data were collected on October 24, 2020 for COVID-related preprints published between January 1, 2020 and October 11, 2020.
+The process for collecting preprint metadata is documented fully [here](covid19_preprints_published.Rmd). In general terms, preprint metadata harvested from Crossref were enriched with data on linked published journal articles using the metadata field `relation.is-preprint-of` in Crossref. Additionally, information was collected on time between preprint publication and publication of Data were collected on October 24, 2020 for COVID-related preprints published between January 1, 2020 and October 11, 2020.
 
 ### A note on coverage
 The coverage of links to published articles in Crossref is **expected to be incomplete** - not all preprint servers include such links in their metadata, and those that do might do so with a time delay and might miss cases where preprints are subsequently published as journal articles. 
@@ -54,6 +54,9 @@ OSF shows the largest spread in time to publication, which could be due to the v
 
 ![days to publish](outputs/figures/days_to_publish/days_to_publish_sources.png)
 
+#### Is this all there is? 
+
+As mentioned above, preprint sererTo investigate whether the links to published papers displayed on the preprint platform itself, compared to information in Crossref metadata (for medRXiv and bioRXiv) 
 
 medRxiv (n=7370) | bioRxiv (n=2167)
 :--------------------------|:----------------------------|
