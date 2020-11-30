@@ -77,7 +77,7 @@ Some preprint servers (e.g. bioRxiv, medRxiv, OSF-preprint servers) are publishe
 
 It might be expected that linking  preprints and published papers might be easier/quicker when preprint server and journals are from the same publisher, and indeed, JMIR, and to a lesser extent Preprints.org and ResearchSquare, have the highest proportion of preprints linked to published papers in the sample studied here.
 
-To check whether published papers from publisher-associated preprint servers indeed end up in journals from the same publisher, an alluvial plot was made showing the destination of all preprints with links to a published paper in their metadata. Indeed, preprints from JMIR, Preprints.org and ResearchSquare predominantly 'end up ' in journals from the same publisher. 
+To check whether published papers from publisher-associated preprint servers indeed end up in journals from the same publisher, an alluvial plot was made showing the destination of all preprints with links to a published paper in their metadata. Indeed, preprints from JMIR and ResearchSquare predominantly 'end up ' in journals from JMIR and SpringerNature, respectively. However, only a subset of preprints on Preprints.org with a link to a subsequent paper get published in MDPI-journals, with over half ending up in journals from other publishers. 
 
 . | Destination of preprints linked to published papers (n=1348)|.
 :----------------------------|:----------------------------|:--------------------------|
