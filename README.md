@@ -58,6 +58,8 @@ OSF shows the largest spread in time to publication, which could be due to the v
 
 As mentioned above, the coverage of links to published articles in Crossref is expected to be incomplete, even for preprint servers that do supply such links - either because of time delay in updating metadata, or because preprint servers might miss cases where preprints are subsequently published as journal articles. To check whether preprint servers update their preprints' metadata for all published articles they are aware of, links to published papers displayed on the preprint platform itself were compared to information in Crossref metadata. This was done for bioRxiv and medRxiv, using scripts from [https://github.com/preprinting-a-pandemic/pandemic_preprints](https://github.com/preprinting-a-pandemic/pandemic_preprints). 
 
+As shown in the charts below, both bioRxiv and medRxiv have more extensive coverage of published articles on their platform itself than recorded in their preprints' metadata. The delay in updating this information in metadata records is most pronounced for medRxiv, and points to the potential for much more accurate and complete coverage of links to published papers in metadata of preprints, at least for bioRxiv and medRxiv. 
+
 
 
 medRxiv (n=7370) | bioRxiv (n=2167)
