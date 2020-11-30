@@ -54,7 +54,7 @@ OSF shows the largest spread in time to publication, which could be due to the v
 
 ![days to publish](outputs/figures/days_to_publish/days_to_publish_sources.png)
 
-#### But wait, there's more
+#### But wait, there's more!
 
 As mentioned above, the coverage of links to published articles in Crossref is expected to be incomplete, even for preprint servers that do supply such links - either because of time delay in updating metadata, or because preprint servers might miss cases where preprints are subsequently published as journal articles. To check whether preprint servers update their preprints' metadata for all published articles they are aware of, links to published papers displayed on the preprint platform itself were compared to information in Crossref metadata. This was done for bioRxiv and medRxiv, using scripts from [https://github.com/preprinting-a-pandemic/pandemic_preprints](https://github.com/preprinting-a-pandemic/pandemic_preprints). 
 
