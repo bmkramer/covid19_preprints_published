@@ -24,7 +24,7 @@ Overall, the rate of COVID19-related preprints with links to published papers in
 ![](outputs/figures/preprints_published/covid19_preprints_published_week.png)
 
 
-Among the preprint servers that do include links to published papers in their metadata, there are interesting differences in the proportion of preprints linked to published papers, with percentages ranging from 3% (for medRxiv) to 38% (for JMIR) (Figures 2, 3). These could reflect both technical workflows (e.g. linking  might be easier/quicker when preprint server and journals are from the same publisher) and publication practices (e.g. selectivity of journals, speed of peer review processes, decisions on when to post a preprint).
+Among the preprint servers that do include links to published papers in their metadata, there are interesting differences in the proportion of preprints linked to published papers, with percentages ranging from 3% (for medRxiv) to 38% (for JMIR). These could reflect both technical workflows (e.g. linking  might be easier/quicker when preprint server and journals are from the same publisher) and publication practices (e.g. selectivity of journals, speed of peer review processes, decisions on when to post a preprint).
  
 
 Preprints linked to published papers | medRxiv (n=7370)
@@ -44,11 +44,9 @@ Preprints.org (n=990) | ChemRxiv (n=415)
 ![COVID-19 preprints per week - Preprints.org](outputs/figures/preprints_published/covid19_preprints_published_Preprints.org_week.png) | ![COVID-19 preprints per week - ChemRXiv](outputs/figures/preprints_published/covid19_preprints_published_ChemRxiv_week.png)
 
 
-To investigate this further, I also looked at: 
-* time to publication for preprints from different preprint servers, 
-* links to published papers displayed on the preprint platform itself, compared to information in Crossref metadata (for medRXiv and bioRXiv)
-* the destination of preprints that get subsequently published, in relation to the preprint server they were posted on, with special attention to publishers preprint servers are specifically linked to. 
+#### Time to publication
 
+One of the factors that will affect the proportion of preprints with links to journal publication at any given time is the time between preprint publication and publication of the subsequent journal article  ('time to publication') - a shorter time to publication would contribute to a higher number of preprints with links to published papers. For preprints in this sample with a link to a subsequent journal article, the average time to publication is 56 days (almost 2 months). There is no clear difference between preprint servers in time to publication - preprint servers with a relatively high proportion of preprints with a link to a published paper (esp. JMIR) do no have a shorter average time to publication. Interestingly, it is the preprint server with the lowest proportion of published journal articles (medRxiv) that has the shortest average time to publication (32 days). This could be related to efforts by a number of publishers of biomedical journals to [maximize the efficiency and speed of peer review for COVID19-related research](https://oaspa.org/covid-19-publishers-open-letter-of-intent-rapid-review/), or by author decisions on when to publish a preprint (prior to or directly upon submission, or further on in the peer review process).
 
 ![days to publish](outputs/figures/days_to_publish/days_to_publish_sources.png)
 
