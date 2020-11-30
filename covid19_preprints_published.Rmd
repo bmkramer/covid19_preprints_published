@@ -312,7 +312,6 @@ covid_preprints_published_viz %>%
   geom_col(color = "grey50", fill = "#95D8FA", size = 0.25, position = "dodge") +
   geom_text(aes(label = data_label), vjust = -1) +
   labs(x = "", y = "% linked to published journal article", fill ="") +
-  #scale_x_discrete(labels = function(x) str_wrap(x, width = 12)) +
   theme(axis.title.x = element_blank()) +
   guides(fill = FALSE) + 
   theme(axis.text.x = element_text(size = 10)) +

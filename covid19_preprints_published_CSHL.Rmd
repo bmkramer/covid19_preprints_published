@@ -315,36 +315,52 @@ p2 <- preprints_matched_time_to_publish %>%
 ```
 
 ``` {r}
-pS2F <- preprints %>%
-  filter(posted_date >= "2020-01-01",
-         published_publisher %in% top_publishers) %>%
-  assign_covid_preprint() %>%
-  mutate(published_publisher = factor(published_publisher,
-                               levels = c("AME Publishing Company",
-                                          "American Association for the Advancement of Science (AAAS)",
-                                          "American Society for Microbiology",
-                                          "Elsevier BV",
-                                          "Frontiers Media SA",
-                                          "MDPI AG",
-                                          "Oxford University Press (OUP)",
-                                          "Public Library of Science (PLoS)",
-                                          "Springer Science and Business Media LLC",
-                                          "Wiley"),
-                                labels = c("AME", "AAAS", "ASM", "Elsevier", "Frontiers", 
-                                           "MDPI", "OUP", "PLoS", "Springer", "Wiley"))) %>%
-  filter(delay_in_days > 0) %>%
-  ggplot(aes(x = published_publisher, y = delay_in_days, color = covid_preprint)) +
-  geom_boxplot(outlier.shape = NA) +
-  geom_jitter(aes(fill = factor(covid_preprint)),
-              shape = 21, size = 0.2, alpha = 0.2,
-              position = position_jitterdodge(jitter.width = 0.5)) + 
-  labs(x = "", y = str_wrap("Time from preprint posting to publication (days)", 30), 
-       fill = "", color = "") +
-  scale_color_manual(values = qualitative_hcl(2, palette = "Set2")) +
-  scale_fill_manual(values = qualitative_hcl(2, palette = "Set2")) +
-  theme(axis.text.x = element_text(size = 10, angle = 45, hjust = 1),
-        legend.position = "top") +
-  guides(fill = FALSE, colour = FALSE) +
-  ggsave("outputs/figures/partials/Figure_S2F.png", width = 5, height = 4) 
-```
 
+# Percentage of preprints published
+
+preprints_matched_percentage <- preprints_matched %>%
+  mutate(`linked in crossref` = case_when(
+           !is.na(is_preprint_of) ~ "is_published",
+           is.na(is_preprint_of) ~ NA_character_),
+         `linked on preprint server` = case_when(
+          is_published_CSHL == T ~ "is_published",
+          is_published_CSHL == F ~ NA_character_)) %>%
+  pivot_longer(cols = c("linked in crossref", 
+                        "linked on preprint server"),
+               names_to = "status",
+               values_to = "is_published") %>%
+  count(source, status, is_published) %>%
+  group_by(source, status) %>%
+  mutate(prop = n*100 / sum(n),
+         total = sum(n)) %>%
+  ungroup() %>%
+  filter(!is.na(is_published)) %>%
+  arrange(desc(total)) %>%
+  mutate(source_label = str_c(source, "\n(", total, ")"),
+         data_label = str_c(round(prop,1), "%")) %>%
+  mutate(source_label = factor(source_label),
+         source_label = fct_inorder(source_label))
+
+p3 <- preprints_matched_percentage %>%
+  ggplot(aes(x = source_label, y = prop,
+             width=.75)) +
+  geom_col(aes(color = status, fill = status), 
+           size = 0.25, 
+          #position = "dodge"
+           position = position_dodge(0.8)
+           ) +
+   labs(x = "", y = "% linked to published journal article") +
+  scale_color_manual(values = palette[2:3]) +
+  scale_fill_manual(values = palette[2:3]) + 
+  geom_text(position = position_dodge2(width= 0.8), 
+            aes(label = data_label), 
+            vjust = -1) +
+  ylim(0, 40) +
+  theme(axis.title.x = element_blank()) +
+  #guides(fill = FALSE) + 
+  theme(axis.text.x = element_text(size = 10),
+        axis.text.y = element_blank(),
+        axis.title.y = element_text(size = 12))
+ggsave("outputs/figures/CSHL_comparison/covid19_preprints_published_percentage_compare_Crossref_CSHL.png", width = 12, height = 6)
+
+```
