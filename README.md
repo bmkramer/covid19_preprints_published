@@ -71,10 +71,18 @@ Preprints linked to published papers | Time to publication
 :--------------------------|:----------------------------|
 ![percentage of preprints linked to published papers CSHL](outputs/figures/CSHL_comparison/covid19_preprints_published_percentage_compare_Crossref_CSHL.png) | ![days to publish_CSHL](outputs/figures/CSHL_comparison/days_to_publish_CSHL_comparison.png)
 
+#### Preprint destination
 
+Some preprint servers (e.g. bioRxiv, medRxiv, OSF-preprint servers) are publisher-independent, while others (e.g. JMIR, ResearchSquare and Preprints.org) are directly associated with specific publishers (JMIR, SpringerNature and MDPI, respectively). While open to other preprints, these preprint servers offer submitting authors  the option to share their paper on the preprint server associated with the publisher during the peer review process. 
+
+It might be expected that linking  preprints and published papers might be easier/quicker when preprint server and journals are from the same publisher, and indeed, JMIR, and to a lesser extent Preprints.org and ResearchSquare, have the highest proportion of preprints linked to published papers in the sample studied here.
+
+To check whether published papers from publisher-associated preprint servers indeed end up in journals from the same publisher, an alluvial plot was made showing the destination of all preprints with links to a published paper in their metadata. Indeed, preprints from JMIR, Preprints.org and ResearchSquare predominantly 'end up ' in journals from the same publisher. 
 
 . | Destination of preprints linked to published papers (n=1348)|.
 :----------------------------|:----------------------------|:--------------------------|
 ![empty](outputs/figures/destination/empty.png) | ![preprint_destination](outputs/figures/destination/covid19_preprints_destination.png) | ![empty](outputs/figures/destination/empty.png)
+
+
 
 
