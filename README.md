@@ -86,7 +86,6 @@ To check whether published papers from publisher-associated preprint servers ind
 
 ### Bonus: The Case of the Missing Metadata
 
-sample date Oct 24, 2020 | sample date Nov 27, 2020 
+medRxiv, sample date Oct 24, 2020 | medRxiv, sample date Nov 27, 2020 
 :--------------------------|:----------------------------|
-![COVID-19 preprints per week - medRxiv](outputs/figures/preprints_published/covid19_preprints_published_medRxiv_week.png) | ![COVID-19 preprints per week - medRxiv](20201127/outputs/figures/preprints_published/covid19_preprints_published_medRxiv_week.png)
-
+![COVID-19 preprints per week - medRxiv](outputs/figures/CSHL_comparison/covid19_preprints_published_compare_Crossref_medRxiv_week.png) | ![COVID-19 preprints per week - medRxiv](20201127/outputs/figures/CSHL_comparison/covid19_preprints_published_compare_Crossref_medRxiv_week.png)
