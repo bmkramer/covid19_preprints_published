@@ -1,4 +1,4 @@
-# COVID-19 preprints linked to published journal articles - as reflected in Crossref metadata
+# COVID-19 preprints linked to published journal articles in Crossref metadata
 
 *[work in progress]*
 
