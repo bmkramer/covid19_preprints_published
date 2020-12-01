@@ -301,7 +301,7 @@ p2 <- preprints_matched_time_to_publish %>%
   ggplot(aes(x = source, y = delay_in_days, color = covid_preprint)) +
   geom_boxplot(outlier.shape = NA) +
   geom_jitter(aes(fill = factor(covid_preprint)),
-              shape = 21, size = 0.5, alpha = 0.5,
+              shape = 21, size = 0.7, alpha = 0.7,
               position = position_jitterdodge(jitter.width = 0.5)) + 
   labs(x = "", y = str_wrap("Time from preprint posting to publication (days)", 30), 
        fill = "", color = "") +
