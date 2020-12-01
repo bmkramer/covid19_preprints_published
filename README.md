@@ -84,11 +84,13 @@ To check whether published papers from publisher-associated preprint servers ind
 ![empty](outputs/figures/destination/empty.png) | ![preprint_destination](outputs/figures/destination/covid19_preprints_destination.png) | ![empty](outputs/figures/destination/empty.png)
 
 
-### Bonus: The Case of the Disappearing Metadata
+### Post scriptum: The Case of the Disappearing Metadata
 
 The data reported here were collected on October 24, 2020, for COVID-related preprints published between January 1, 2020 and October 11, 2020. When I wanted to run an update of the dataset on November 27, 2020, I noticed that **140 of 227 medRxiv preprints no longer had a link to the published paper in Crossref metadata** (while still displaying a link on medRxiv itself). 
 
-All preprints in this group were published on medRxiv between January 1, 2020 and April 11, 2020, and further inspection showed their metadata were all last updated after November 1, 2020 (scipts and data [here](20201127/medrxiv_check/medrxiv_check.R)). A [query using the Crossref API](http://api.crossref.org/prefixes/10.1101/works?filter=type:posted-content,from-posted-date:2020-01,until-posted-date:2020-11,from-update-date:2020-11,until-update-date:2020-11,relation.type:is-preprint-of&rows=0) reveals that across bioRxiv/medRxiv, preprints published between January-November 2020 that had an update to their metadata after November 1, 2020, have no links to published 
+All preprints in this group were published on medRxiv between January 1, 2020 and April 11, 2020, and further inspection showed their metadata were all last updated after November 1, 2020 (scipts and data [here](20201127/medrxiv_check/medrxiv_check.R)). 
+
+A [query using the Crossref API](http://api.crossref.org/prefixes/10.1101/works?filter=type:posted-content,from-posted-date:2020-01,until-posted-date:2020-11,from-update-date:2020-11,until-update-date:2020-11,relation.type:is-preprint-of&rows=0) reveals that across bioRxiv/medRxiv, preprints published between January-November 2020 that had an update to their metadata after November 1, 2020, have no links to published journal articles. So it looks like something went wrong here on the technical side - I will wait until this is resolved before updating the data and charts.  
 
 medRxiv, sample date Oct 24, 2020 | medRxiv, sample date Nov 27, 2020 
 :--------------------------|:----------------------------|
