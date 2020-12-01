@@ -88,7 +88,7 @@ To check whether published papers from publisher-associated preprint servers ind
 
 The data reported here were collected on October 24, 2020, for COVID-related preprints published between January 1, 2020 and October 11, 2020. When I wanted to run an update of the dataset on November 27, 2020, I noticed that **140 of 227 of medRxiv preprints no longer had a link to the published paper in Crossref metadata** (while still displaying a link on medRxiv itself). 
 
-All preprints in this groupwere published on medRxiv between January 1, 2020 and April 11, 2020, and further inspection showed their metadata were all last updated after November 1, 2020 (scipts and data here: [20201127/data/medrxiv_check/](20201127/data/medrxiv_check).
+All preprints in this groupwere published on medRxiv between January 1, 2020 and April 11, 2020, and further inspection showed their metadata were all last updated after November 1, 2020 (scipts and data here: [20201127/data/medrxiv_check](20201127/data/medrxiv_check)).
 
 medRxiv, sample date Oct 24, 2020 | medRxiv, sample date Nov 27, 2020 
 :--------------------------|:----------------------------|
