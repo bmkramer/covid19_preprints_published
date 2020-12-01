@@ -90,7 +90,9 @@ The data reported here were collected on October 24, 2020, for COVID-related pre
 
 All preprints in this group were published on medRxiv between January 1, 2020 and April 11, 2020, and further inspection showed their metadata were all last updated after November 1, 2020 (scipts and data [here](20201127/medrxiv_check/medrxiv_check.R)). 
 
-A [query using the Crossref API](http://api.crossref.org/prefixes/10.1101/works?filter=type:posted-content,from-posted-date:2020-01,until-posted-date:2020-11,from-update-date:2020-11,until-update-date:2020-11,relation.type:is-preprint-of&rows=0) reveals that across bioRxiv/medRxiv, preprints published between January-November 2020 that had an update to their metadata after November 1, 2020, have no links to published journal articles. So it looks like something went wrong here on the technical side - I will wait until this is resolved before updating the data and charts.  
+A [query using the Crossref API](http://api.crossref.org/prefixes/10.1101/works?filter=type:posted-content,from-posted-date:2020-01,until-posted-date:2020-11,from-update-date:2020-11,until-update-date:2020-11,relation.type:is-preprint-of&rows=0) reveals that across bioRxiv/medRxiv, preprints published between January-November 2020 that had an update to their metadata after November 1, 2020 have no links to published journal articles. 
+
+So it looks like something went wrong here on the technical side - I will wait until this is resolved before updating the data and charts.  
 
 medRxiv, sample date Oct 24, 2020 | medRxiv, sample date Nov 27, 2020 
 :--------------------------|:----------------------------|
