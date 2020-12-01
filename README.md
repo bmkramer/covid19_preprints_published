@@ -52,6 +52,8 @@ Interestingly, it is the preprint server with the lowest proportion of published
 
 OSF shows the largest spread in time to publication, which could be due to the variety of preprint servers using the OSF platform, with corresponding differences in publication cultures including (timing of) preprint sharing. 
 
+NB Note that time to publication can also be negative, reflecting cases where the preprint is shared *after* publication of the journal article.  
+
 ![days to publish](outputs/figures/days_to_publish/days_to_publish_sources.png)
 
 #### But wait, there's more!
