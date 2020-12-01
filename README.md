@@ -73,9 +73,9 @@ Preprints linked to published papers | Time to publication
 
 #### Preprint destination
 
-Some preprint servers (e.g. bioRxiv, medRxiv, OSF-preprint servers) are publisher-independent, while others (e.g. JMIR, ResearchSquare and Preprints.org) are directly associated with specific publishers (JMIR, SpringerNature and MDPI, respectively). While open to other preprints, these preprint servers offer submitting authors  the option to share their paper on the preprint server associated with the publisher during the peer review process. 
+Some preprint servers (e.g. bioRxiv, medRxiv, OSF-preprint servers) are publisher-independent, while others (e.g. JMIR, ResearchSquare and Preprints.org) are directly associated with specific publishers (JMIR, SpringerNature and MDPI, respectively). While open to other preprints, these preprint servers offer authors submitting to (some of) their journals the option to share their paper on the preprint server associated with the publisher during the peer review process (JMIR, SprongerNature), or notify submitting authors of the existence of the publisher's preprint server (MDPI). 
 
-It might be expected that linking  preprints and published papers might be easier/quicker when preprint server and journals are from the same publisher, and indeed, JMIR, and to a lesser extent Preprints.org and ResearchSquare, have the highest proportion of preprints linked to published papers in the sample studied here.
+It might be expected that linking preprints and published papers might be easier/quicker when preprint server and journals are associated with the same publisher, and indeed, JMIR, and to a lesser extent Preprints.org and ResearchSquare, have the highest proportion of preprints linked to published papers in the sample studied here.
 
 To check whether published papers from publisher-associated preprint servers indeed end up in journals from the same publisher, an alluvial plot was made showing the destination of all preprints with links to a published paper in their metadata. Indeed, preprints from JMIR and ResearchSquare predominantly 'end up ' in journals from JMIR and SpringerNature, respectively. However, only a subset of preprints on Preprints.org with a link to a subsequent paper get published in MDPI-journals, with over half ending up in journals from other publishers. 
 
@@ -85,6 +85,8 @@ To check whether published papers from publisher-associated preprint servers ind
 
 
 ### Bonus: The Case of the Missing Metadata
+
+The data reported here were sampled on October 24, 2020, for COVID-related preprints published between January 1, 2020 and October 11, 2020. When doing an update of the dataset on November 27, 2020, I noticed that 140 of 227 of medRxiv preprints **no longer** had a link to the published paper in Crossref metadata (while still displaying a link on medRxiv itself). All these were published on medRxiv between January 1, 2020 and April 11, 2020.
 
 medRxiv, sample date Oct 24, 2020 | medRxiv, sample date Nov 27, 2020 
 :--------------------------|:----------------------------|
