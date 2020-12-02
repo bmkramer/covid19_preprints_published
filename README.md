@@ -52,13 +52,15 @@ Interestingly, it is the preprint server with the lowest proportion of published
 
 OSF shows the largest spread in time to publication, which could be due to the variety of preprint servers using the OSF platform, with corresponding differences in publication cultures including (timing of) preprint sharing. 
 
+NB Note that time to publication can also be negative, reflecting cases where the preprint is shared *after* publication of the journal article.  
+
 ![days to publish](outputs/figures/days_to_publish/days_to_publish_sources.png)
 
 #### But wait, there's more!
 
 As mentioned above, the coverage of links to published articles in Crossref is expected to be incomplete, even for preprint servers that do supply such links - either because of time delay in updating metadata, or because preprint servers might miss cases where preprints are subsequently published as journal articles. To check whether preprint servers update their preprints' metadata for all published articles they are aware of, links to published papers displayed on the preprint platform itself were compared to information in Crossref metadata. This was done for bioRxiv and medRxiv, using scripts from [https://github.com/preprinting-a-pandemic/pandemic_preprints](https://github.com/preprinting-a-pandemic/pandemic_preprints). 
 
-As shown in the charts below, both bioRxiv and medRxiv have more extensive coverage of published articles on their platform itself than recorded in their preprints' metadata. The delay in updating this information in metadata records is most pronounced for medRxiv, and points to the potential for much more accurate and complete coverage of links to published papers in metadata of preprints, at least for bioRxiv and medRxiv. 
+As shown in the charts below, both bioRxiv and medRxiv have more extensive coverage of published articles on their platform itself than recorded in their preprints' metadata (there were no cases of preprints with only a link to a published paper in the metadata, but not on the preprint platform). The delay in updating this information in metadata records is most pronounced for medRxiv, and points to the potential for much more accurate and complete coverage of links to published papers in metadata of preprints, at least for bioRxiv and medRxiv. 
 
 Interestingly, both for bioRxiv and medRxiv, time to publication is longer for preprints with links to published papers that are only shown on the platform itself, compared to preprints with links to published papers in Crossref metadata. 
 
