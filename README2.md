@@ -21,7 +21,11 @@ In short, the proportions shown here represent the **lower bound of preprints th
 
 Overall, the rate of COVID19-related preprints with links to published papers in their metadata is only 6% (1348 of 22905 preprints with Crossref DOI). However, as explained above, a number of preprint servers do not add these links to the metadata of their preprints at all, and for those that do the coverage may be incomplete and/or delayed.
 
-![](outputs/figures/preprints_published/covid19_preprints_published_week.png)
+
+Preprints linked to published papers (absolute numbers) | Preprints linked to published papers (percentage)
+:--------------------------|:----------------------------|
+![](outputs/figures/preprints_published/covid19_preprints_published_week.png) | ![.](outputs/figures/preprints_published/percentages/covid19_preprints_published_week_perc.png)
+
 
 
 Among the preprint servers that do include links to published papers in their metadata, there are interesting differences in the proportion of preprints linked to published papers, with percentages ranging from 3% (for medRxiv) to 38% (for JMIR). These could reflect both technical workflows (e.g. linking  might be easier/quicker when preprint server and journals are from the same publisher) and publication practices (e.g. selectivity of journals, speed of peer review processes, decisions on when to post a preprint).
