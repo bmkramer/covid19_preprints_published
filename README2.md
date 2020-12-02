@@ -35,27 +35,27 @@ medRxiv (n=7370) - absolute numbers | medRxiv (n=7370) - percentage
 :--------------------------|:----------------------------|
 ![COVID-19 preprints per week - medRxiv](outputs/figures/preprints_published/covid19_preprints_published_medRxiv_week.png) | ![COVID-19 preprints per week - medRxiv](outputs/figures/preprints_published/percentages/covid19_preprints_published_medRxiv_week_perc.png)
 
-ResearchSquare (n=3794) | ResearchSquare (n=3794)
+ResearchSquare (n=3794) - absolute numbers | ResearchSquare (n=3794) - percentage
 :--------------------------|:----------------------------|
 ![COVID-19 preprints per week - ResearchSquare](outputs/figures/preprints_published/covid19_preprints_published_Research%20Square_week.png) | ![COVID-19 preprints per week - ResearchSquare](outputs/figures/preprints_published/percentages/covid19_preprints_published_Research%20Square_week_perc.png)
 
-bioRxiv (n=2167) | bioRxiv (n=2167)
+bioRxiv (n=2167) - absolute numbers | bioRxiv (n=2167) - percentage
 :--------------------------|:----------------------------|
 ![COVID-19 preprints per week - bioRxiv](outputs/figures/preprints_published/covid19_preprints_published_bioRxiv_week.png)  | ![COVID-19 preprints per week - bioRxiv](outputs/figures/preprints_published/percentages/covid19_preprints_published_bioRxiv_week_perc.png) 
 
-OSF preprint servers (n=1880) | OSF preprint servers (n=1880) 
+OSF preprint servers (n=1880) - absolute numbers | OSF preprint servers (n=1880) - percentage
 :--------------------------|:----------------------------|
 ![COVID-19 preprints per week - OSF](outputs/figures/preprints_published/covid19_preprints_published_OSF_week.png) | ![COVID-19 preprints per week - OSF](outputs/figures/preprints_published/percentages/covid19_preprints_published_OSF_week_perc.png)
 
-JMIR Preprints (n=1083) | JMIR Preprints (n=1083) 
+JMIR Preprints (n=1083) - absolute numbers | JMIR Preprints (n=1083) - percentage
 :--------------------------|:----------------------------|
 ![COVID-19 preprints per week - JMIR](outputs/figures/preprints_published/covid19_preprints_published_JMIR_week.png) | ![COVID-19 preprints per week - JMIR](outputs/figures/preprints_published/percentages/covid19_preprints_published_JMIR_week_perc.png)
 
-Preprints.org (n=990) | Preprints.org (n=990)
+Preprints.org (n=990) - absolute numbers | Preprints.org (n=990) - percentage
 :--------------------------|:----------------------------|
 ![COVID-19 preprints per week - Preprints.org](outputs/figures/preprints_published/covid19_preprints_published_Preprints.org_week.png) | ![COVID-19 preprints per week - Preprints.org](outputs/figures/preprints_published/percentages/covid19_preprints_published_Preprints.org_week_perc.png)
 
-ChemRxiv (n=415) | ChemRxiv (n=415)
+ChemRxiv (n=415) - absolute numbers | ChemRxiv (n=415) - percentage
 :--------------------------|:----------------------------|
 ![COVID-19 preprints per week - ChemRXiv](outputs/figures/preprints_published/covid19_preprints_published_ChemRxiv_week.png) | ![COVID-19 preprints per week - ChemRXiv](outputs/figures/preprints_published/percentages/covid19_preprints_published_ChemRxiv_week_perc.png)
 
