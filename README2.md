@@ -49,9 +49,9 @@ Preprints.org (n=990) | ChemRxiv (n=415)
 :--------------------------|:----------------------------|
 ![COVID-19 preprints per week - Preprints.org](outputs/figures/preprints_published/covid19_preprints_published_Preprints.org_week.png) | ![COVID-19 preprints per week - ChemRXiv](outputs/figures/preprints_published/covid19_preprints_published_ChemRxiv_week.png)
 
-Preprints linked to published papers - percentage per preprint server | .
-:--------------------------|:----------------------------|
-![percentage of preprints linked to published papers](outputs/figures/preprints_published/covid19_preprints_published_percentage.png) | ![empty](outputs/figures/preprints_published/empty.png)
+. | Preprints linked to published papers - percentage per preprint server | .
+:--------------------------|:--------------------------|:----------------------------|
+![empty](outputs/figures/preprints_published/empty2.png) | ![percentage of preprints linked to published papers](outputs/figures/preprints_published/covid19_preprints_published_percentage.png) | ![empty](outputs/figures/preprints_published/empty2.png)
 
 #### Time to publication
 
