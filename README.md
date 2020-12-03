@@ -21,28 +21,47 @@ In short, the proportions shown here represent the **lower bound of preprints th
 
 Overall, the rate of COVID19-related preprints with links to published papers in their metadata is only 6% (1348 of 22905 preprints with Crossref DOI). However, as explained above, a number of preprint servers do not add these links to the metadata of their preprints at all, and for those that do the coverage may be incomplete and/or delayed.
 
-![](outputs/figures/preprints_published/covid19_preprints_published_week.png)
+
+Preprints linked to published papers (absolute numbers) | Preprints linked to published papers (percentage)
+:--------------------------|:----------------------------|
+![](outputs/figures/preprints_published/covid19_preprints_published_week.png) | ![.](outputs/figures/preprints_published/percentages/covid19_preprints_published_week_perc.png)
+
 
 
 Among the preprint servers that do include links to published papers in their metadata, there are interesting differences in the proportion of preprints linked to published papers, with percentages ranging from 3% (for medRxiv) to 38% (for JMIR). These could reflect both technical workflows (e.g. linking  might be easier/quicker when preprint server and journals are from the same publisher) and publication practices (e.g. selectivity of journals, speed of peer review processes, decisions on when to post a preprint).
- 
 
-Preprints linked to published papers | medRxiv (n=7370)
+
+medRxiv (n=7370) - absolute numbers | medRxiv (n=7370) - percentages
 :--------------------------|:----------------------------|
-![percentage of preprints linked to published papers](outputs/figures/preprints_published/covid19_preprints_published_percentage.png) | ![COVID-19 preprints per week - medRxiv](outputs/figures/preprints_published/covid19_preprints_published_medRxiv_week.png)
+![COVID-19 preprints per week - medRxiv](outputs/figures/preprints_published/covid19_preprints_published_medRxiv_week.png) | ![COVID-19 preprints per week - medRxiv](outputs/figures/preprints_published/percentages/covid19_preprints_published_medRxiv_week_perc.png)
 
-ResearchSquare (n=3794) | bioRxiv (n=2167)
+ResearchSquare (n=3794) - absolute numbers | ResearchSquare (n=3794) - percentages
 :--------------------------|:----------------------------|
-![COVID-19 preprints per week - ResearchSquare](outputs/figures/preprints_published/covid19_preprints_published_Research%20Square_week.png) | ![COVID-19 preprints per week - bioRxiv](outputs/figures/preprints_published/covid19_preprints_published_bioRxiv_week.png) 
+![COVID-19 preprints per week - ResearchSquare](outputs/figures/preprints_published/covid19_preprints_published_Research%20Square_week.png) | ![COVID-19 preprints per week - ResearchSquare](outputs/figures/preprints_published/percentages/covid19_preprints_published_Research%20Square_week_perc.png)
 
-OSF preprint servers (n=1880) | JMIR Preprints (n=1083) 
+bioRxiv (n=2167) - absolute numbers | bioRxiv (n=2167) - percentages
 :--------------------------|:----------------------------|
-![COVID-19 preprints per week - OSF](outputs/figures/preprints_published/covid19_preprints_published_OSF_week.png) | ![COVID-19 preprints per week - JMIR](outputs/figures/preprints_published/covid19_preprints_published_JMIR_week.png)
+![COVID-19 preprints per week - bioRxiv](outputs/figures/preprints_published/covid19_preprints_published_bioRxiv_week.png)  | ![COVID-19 preprints per week - bioRxiv](outputs/figures/preprints_published/percentages/covid19_preprints_published_bioRxiv_week_perc.png) 
 
-Preprints.org (n=990) | ChemRxiv (n=415)
+OSF preprint servers (n=1880) - absolute numbers | OSF preprint servers (n=1880) - percentages
 :--------------------------|:----------------------------|
-![COVID-19 preprints per week - Preprints.org](outputs/figures/preprints_published/covid19_preprints_published_Preprints.org_week.png) | ![COVID-19 preprints per week - ChemRXiv](outputs/figures/preprints_published/covid19_preprints_published_ChemRxiv_week.png)
+![COVID-19 preprints per week - OSF](outputs/figures/preprints_published/covid19_preprints_published_OSF_week.png) | ![COVID-19 preprints per week - OSF](outputs/figures/preprints_published/percentages/covid19_preprints_published_OSF_week_perc.png)
 
+JMIR Preprints (n=1083) - absolute numbers | JMIR Preprints (n=1083) - percentages
+:--------------------------|:----------------------------|
+![COVID-19 preprints per week - JMIR](outputs/figures/preprints_published/covid19_preprints_published_JMIR_week.png) | ![COVID-19 preprints per week - JMIR](outputs/figures/preprints_published/percentages/covid19_preprints_published_JMIR_week_perc.png)
+
+Preprints.org (n=990) - absolute numbers | Preprints.org (n=990) - percentages
+:--------------------------|:----------------------------|
+![COVID-19 preprints per week - Preprints.org](outputs/figures/preprints_published/covid19_preprints_published_Preprints.org_week.png) | ![COVID-19 preprints per week - Preprints.org](outputs/figures/preprints_published/percentages/covid19_preprints_published_Preprints.org_week_perc.png)
+
+ChemRxiv (n=415) - absolute numbers | ChemRxiv (n=415) - percentages
+:--------------------------|:----------------------------|
+![COVID-19 preprints per week - ChemRXiv](outputs/figures/preprints_published/covid19_preprints_published_ChemRxiv_week.png) | ![COVID-19 preprints per week - ChemRXiv](outputs/figures/preprints_published/percentages/covid19_preprints_published_ChemRxiv_week_perc.png)
+
+. | Preprints linked to published papers - percentage per preprint server | .
+:--------------------------|:--------------------------|:----------------------------|
+![empty](outputs/figures/preprints_published/empty2.png) | ![percentage of preprints linked to published papers](outputs/figures/preprints_published/covid19_preprints_published_percentage.png) | ![empty](outputs/figures/preprints_published/empty2.png)
 
 #### Time to publication
 
