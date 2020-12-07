@@ -19,7 +19,7 @@ In short, the proportions shown here represent the **lower bound of preprints th
 
 ### Results
 
-Overall, the rate of COVID19-related preprints with links to published papers in their metadata is only 6% (1348 of 22905 preprints with Crossref DOI). However, as explained above, a number of preprint servers do not add these links to the metadata of their preprints at all, and for those that do the coverage may be incomplete and/or delayed.
+Overall, the rate of COVID19-related preprints with links to published papers in Crossref metadata is only 6% (1348 of 22905 preprints with Crossref DOI). However, as explained above, a number of preprint servers do not add these links to the metadata of their preprints at all, and for those that do the coverage may be incomplete and/or delayed.
 
 
 Preprints linked to published papers (absolute numbers) | Preprints linked to published papers (percentage)
@@ -75,13 +75,15 @@ NB Note that time to publication can also be negative, reflecting cases where th
 
 ![days to publish](outputs/figures/days_to_publish/days_to_publish_sources.png)
 
-#### But wait, there's more!
+#### But there's more
 
 As mentioned above, the coverage of links to published articles in Crossref is expected to be incomplete, even for preprint servers that do supply such links - either because of time delay in updating metadata, or because preprint servers might miss cases where preprints are subsequently published as journal articles. To check whether preprint servers update their preprints' metadata for all published articles they are aware of, links to published papers displayed on the preprint platform itself were compared to information in Crossref metadata. This was done for bioRxiv and medRxiv, using scripts from [https://github.com/preprinting-a-pandemic/pandemic_preprints](https://github.com/preprinting-a-pandemic/pandemic_preprints). 
 
-As shown in the charts below, both bioRxiv and medRxiv have more extensive coverage of published articles on their platform itself than recorded in their preprints' metadata (there were no cases of preprints with only a link to a published paper in the metadata, but not on the preprint platform). The delay in updating this information in metadata records is most pronounced for medRxiv, and points to the potential for much more accurate and complete coverage of links to published papers in metadata of preprints, at least for bioRxiv and medRxiv. 
+As shown in the charts below, both bioRxiv and medRxiv have more extensive coverage of published articles on their platform itself than recorded in their preprints' metadata: 17.0% vs. 9.8% for bioRxiv, 12.8% vs. 3.1% for medRxiv for COVID19-related preprints in this sample. (there were no cases of preprints with only a link to a published paper in the metadata, but not on the preprint platform). The delay in updating this information in metadata records is most pronounced for medRxiv, and points to the **potential for much more accurate and complete coverage of links to published papers in metadata of preprints**, at least for bioRxiv and medRxiv. 
 
 Interestingly, both for bioRxiv and medRxiv, time to publication is longer for preprints with links to published papers that are only shown on the platform itself, compared to preprints with links to published papers in Crossref metadata. 
+
+As an estimation of how many published journal  articles are not detected by the preprint servers themselves, a [recent analysis](https://doi.org/10.1101/2020.09.04.20188771) by Francois Lachapelle, shared as preprint in medRxiv, showed that in September 2020, up to 24.8% (biorXiv) and 19.3% (medRxiv) COVID19-related preprints could be matched to published journal articles in the CORD-19 database, using conditional fuzzy logic.
 
 
 medRxiv (n=7370) | bioRxiv (n=2167)
