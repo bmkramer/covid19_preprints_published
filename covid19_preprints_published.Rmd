@@ -327,10 +327,10 @@ p4 <- covid_preprints_published_viz %>%
 
 ```
 
-```{r r message=FALSE, warning=FALSE, include = FALSE}
+```{r message=FALSE, warning=FALSE, include = FALSE}
 #Percentage of preprints published
 
-p5 <= covid_preprints_published_viz %>% 
+p5 <- covid_preprints_published_viz %>% 
   filter(source %in% servers_selected) %>%
   count(source, is_preprint_of) %>%
   group_by(source) %>%
