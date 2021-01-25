@@ -4,7 +4,7 @@
 This repository contains code used to extract details of COVID-19 related preprints that are linked to published journal articles in Crossref metadata, and visualize their distribution over time (building on [COVID-19 Preprints](https://github.com/nicholasmfraser/covid19_preprints))
 
 
-The process for collecting preprint metadata is documented fully [here](covid19_preprints_published.Rmd). In general terms, preprint metadata harvested from Crossref were enriched with data on linked published journal articles using the metadata field `relation.is-preprint-of` in Crossref. Additionally, information was collected on time between preprint publication and publication of Data were collected on October 24, 2020 for COVID-related preprints published between January 1, 2020 and October 11, 2020.
+The process for collecting preprint metadata is documented fully [here](01_covid19_preprints_published.Rmd). In general terms, preprint metadata harvested from Crossref were enriched with data on linked published journal articles using the metadata field `relation.is-preprint-of` in Crossref. Additionally, information was collected on time between preprint publication and publication of Data were collected on January 24, 2021 for COVID-related preprints published between January 1, 2020 and January 10, 2021.
 
 ### A note on coverage
 The coverage of links to published articles in Crossref is **expected to be incomplete** - not all preprint servers include such links in their metadata, and those that do might do so with a time delay and might miss cases where preprints are subsequently published as journal articles. 
@@ -12,13 +12,13 @@ The coverage of links to published articles in Crossref is **expected to be inco
 Crossref notifies preprint servers of potential matches with published articles. It requires preprint servers to verify the links and add them to the metadata record of the preprint. 
 (see [Crossref metadata: Posted content (includes preprints)](https://support.crossref.org/hc/en-us/articles/213126346-Posted-content-includes-preprints#assoc)), but uptake of this varies across preprint services.
 
-For example, SRRN (n=3772 COVID19-related preprints), Authorea (n=894), and Scielo Preprints (n=236) all do not include links to published papers in their preprint metadata on Crossref. Figshare [only recently](https://twitter.com/figshare/status/1277516684358803461) started depositing these metadata for their preprint servers that use Crossref (ChemRXiv, TechRXiv). Both [bioRxiv](https://www.biorxiv.org/about/FAQ) and [medRxiv](https://www.medrxiv.org/about/FAQ), that do update Crossref metadata with links to published papers, mention in their FAQs that there is usually a delay of a couple of weeks, and matches might be missed. 
+For example, SRRN (n=4806 COVID19-related preprints in this dataset), Authorea (n=1146), and Scielo Preprints (n=271) all do not include links to published papers in their metadata on Crossref. Figshare [only recently](https://twitter.com/figshare/status/1277516684358803461) started depositing these metadata for their preprint servers that use Crossref (ChemRXiv, TechRXiv). Both [bioRxiv](https://www.biorxiv.org/about/FAQ) and [medRxiv](https://www.medrxiv.org/about/FAQ), that do update Crossref metadata with links to published papers, mention in their FAQs that there is usually a delay of a couple of weeks, and matches might be missed. 
 
 In short, the proportions shown here represent the **lower bound of preprints that have subsequently been published as journal articles**, and as such, are as much a **reflection on the uptake of metadata linking** as on the actual rate of preprints that get published as journal articles.
 
 ### Results
 
-Overall, the rate of COVID19-related preprints with links to published papers in Crossref metadata is only 6% (1348 of 22905 preprints with Crossref DOI). However, as explained above, a number of preprint servers do not add these links to the metadata of their preprints at all, and for those that do the coverage may be incomplete and/or delayed.
+Overall, the rate of COVID19-related preprints with links to published papers in Crossref metadata is only 9% (2750 of 29537 preprints with Crossref DOI). However, as explained above, a number of preprint servers do not add these links to the metadata of their preprints at all, and for those that do the coverage may be incomplete and/or delayed.
 
 
 Preprints linked to published papers (absolute numbers) | Preprints linked to published papers (percentage)
@@ -27,34 +27,34 @@ Preprints linked to published papers (absolute numbers) | Preprints linked to pu
 
 
 
-Among the preprint servers that do include links to published papers in their metadata, there are interesting differences in the proportion of preprints linked to published papers, with percentages ranging from 3% (for medRxiv) to 38% (for JMIR). These could reflect both technical workflows (e.g. linking  might be easier/quicker when preprint server and journals are from the same publisher) and publication practices (e.g. selectivity of journals, speed of peer review processes, decisions on when to post a preprint).
+Among the preprint servers that do include links to published papers in their metadata, there are interesting differences in the proportion of preprints linked to published papers, with percentages ranging from 6% (for medRxiv) to 45% (for JMIR). These could reflect both technical workflows (e.g. linking  might be easier/quicker when preprint server and journals are from the same publisher) and publication practices (e.g. selectivity of journals, speed of peer review processes, decisions on when to post a preprint).
 
 
-medRxiv (n=7370) - absolute numbers | medRxiv (n=7370) - percentages
+medRxiv (n=9465) - absolute numbers | medRxiv (n=9465) - percentages
 :--------------------------|:----------------------------|
 ![COVID-19 preprints per week - medRxiv](outputs/figures/preprints_published/covid19_preprints_published_medRxiv_week.png) | ![COVID-19 preprints per week - medRxiv](outputs/figures/preprints_published/percentages/covid19_preprints_published_medRxiv_week_perc.png)
 
-ResearchSquare (n=3794) - absolute numbers | ResearchSquare (n=3794) - percentages
+ResearchSquare (n=5046) - absolute numbers | ResearchSquare (n=5046) - percentages
 :--------------------------|:----------------------------|
 ![COVID-19 preprints per week - ResearchSquare](outputs/figures/preprints_published/covid19_preprints_published_Research%20Square_week.png) | ![COVID-19 preprints per week - ResearchSquare](outputs/figures/preprints_published/percentages/covid19_preprints_published_Research%20Square_week_perc.png)
 
-bioRxiv (n=2167) - absolute numbers | bioRxiv (n=2167) - percentages
+bioRxiv (n=2881) - absolute numbers | bioRxiv (n=2881) - percentages
 :--------------------------|:----------------------------|
 ![COVID-19 preprints per week - bioRxiv](outputs/figures/preprints_published/covid19_preprints_published_bioRxiv_week.png)  | ![COVID-19 preprints per week - bioRxiv](outputs/figures/preprints_published/percentages/covid19_preprints_published_bioRxiv_week_perc.png) 
 
-OSF preprint servers (n=1880) - absolute numbers | OSF preprint servers (n=1880) - percentages
+OSF preprint servers (n=2434) - absolute numbers | OSF preprint servers (n=2434) - percentages
 :--------------------------|:----------------------------|
 ![COVID-19 preprints per week - OSF](outputs/figures/preprints_published/covid19_preprints_published_OSF_week.png) | ![COVID-19 preprints per week - OSF](outputs/figures/preprints_published/percentages/covid19_preprints_published_OSF_week_perc.png)
 
-JMIR Preprints (n=1083) - absolute numbers | JMIR Preprints (n=1083) - percentages
+JMIR Preprints (n=1453) - absolute numbers | JMIR Preprints (n=1453) - percentages
 :--------------------------|:----------------------------|
 ![COVID-19 preprints per week - JMIR](outputs/figures/preprints_published/covid19_preprints_published_JMIR_week.png) | ![COVID-19 preprints per week - JMIR](outputs/figures/preprints_published/percentages/covid19_preprints_published_JMIR_week_perc.png)
 
-Preprints.org (n=990) - absolute numbers | Preprints.org (n=990) - percentages
+Preprints.org (n=1136) - absolute numbers | Preprints.org (n=1136) - percentages
 :--------------------------|:----------------------------|
 ![COVID-19 preprints per week - Preprints.org](outputs/figures/preprints_published/covid19_preprints_published_Preprints.org_week.png) | ![COVID-19 preprints per week - Preprints.org](outputs/figures/preprints_published/percentages/covid19_preprints_published_Preprints.org_week_perc.png)
 
-ChemRxiv (n=415) - absolute numbers | ChemRxiv (n=415) - percentages
+ChemRxiv (n=483) - absolute numbers | ChemRxiv (n=483) - percentages
 :--------------------------|:----------------------------|
 ![COVID-19 preprints per week - ChemRXiv](outputs/figures/preprints_published/covid19_preprints_published_ChemRxiv_week.png) | ![COVID-19 preprints per week - ChemRXiv](outputs/figures/preprints_published/percentages/covid19_preprints_published_ChemRxiv_week_perc.png)
 
@@ -64,9 +64,7 @@ ChemRxiv (n=415) - absolute numbers | ChemRxiv (n=415) - percentages
 
 #### Time to publication
 
-One of the factors that will affect the proportion of preprints with links to journal publication at any given time is the time between preprint publication and publication of the subsequent journal article  ('time to publication') - a shorter time to publication would contribute to a higher number of preprints with links to published papers. For preprints in this sample with a link to a subsequent journal article, the average time to publication is 56 days (almost 2 months). There is no clear difference between preprint servers in time to publication - preprint servers with a relatively high proportion of preprints with a link to a published paper (esp. JMIR) do no have a shorter average time to publication. 
-
-Interestingly, it is the preprint server with the lowest proportion of published journal articles (medRxiv) that has the shortest average time to publication (32 days). This could be related to efforts by a number of publishers of biomedical journals to [maximize the efficiency and speed of peer review for COVID19-related research](https://oaspa.org/covid-19-publishers-open-letter-of-intent-rapid-review/), or by author decisions on when to publish a preprint (prior to or directly upon submission, or further on in the peer review process).
+One of the factors that will affect the proportion of preprints with links to journal publication at any given time is the time between preprint publication and publication of the subsequent journal article  ('time to publication') - a shorter time to publication would contribute to a higher number of preprints with links to published papers. For preprints in this sample with a link to a subsequent journal article, the average time to publication is 78 days (between 2 and 3 months). There is no clear difference between preprint servers in time to publication - preprint servers with a relatively high proportion of preprints with a link to a published paper (esp. JMIR) do no have a shorter average time to publication. 
 
 OSF shows the largest spread in time to publication, which could be due to the variety of preprint servers using the OSF platform, with corresponding differences in publication cultures including (timing of) preprint sharing. 
 
@@ -78,14 +76,16 @@ NB Note that time to publication can also be negative, reflecting cases where th
 
 As mentioned above, the coverage of links to published articles in Crossref is expected to be incomplete, even for preprint servers that do supply such links - either because of time delay in updating metadata, or because preprint servers might miss cases where preprints are subsequently published as journal articles. To check whether preprint servers update their preprints' metadata for all published articles they are aware of, links to published papers displayed on the preprint platform itself were compared to information in Crossref metadata. This was done for bioRxiv and medRxiv, using scripts from [https://github.com/preprinting-a-pandemic/pandemic_preprints](https://github.com/preprinting-a-pandemic/pandemic_preprints). 
 
-As shown in the charts below, both bioRxiv and medRxiv have more extensive coverage of published articles on their platform itself than recorded in their preprints' metadata: 17.0% vs. 9.8% for bioRxiv, 12.8% vs. 3.1% for medRxiv for COVID19-related preprints in this sample. (there were no cases of preprints with only a link to a published paper in the metadata, but not on the preprint platform). The delay in updating this information in metadata records is most pronounced for medRxiv, and points to the **potential for much more accurate and complete coverage of links to published papers in metadata of preprints**, at least for bioRxiv and medRxiv. 
+As shown in the charts below, both bioRxiv and medRxiv have more extensive coverage of published articles on their platform itself than recorded in their preprints' metadata: 22.2% vs. 5.9% for medRxiv and 27.7.% vs. 22.0% for bioRxiv, for COVID19-related preprints in this sample (there were no cases of preprints with only a link to a published paper in the metadata, but not on the preprint platform). The delay in updating this information in metadata records is most pronounced for medRxiv, and points to the **potential for much more accurate and complete coverage of links to published papers in metadata of preprints**, particularly for medRxiv. 
 
 Interestingly, both for bioRxiv and medRxiv, time to publication is longer for preprints with links to published papers that are only shown on the platform itself, compared to preprints with links to published papers in Crossref metadata. 
 
-As an estimation of how many published journal  articles are not detected by the preprint servers themselves, a [recent analysis](https://doi.org/10.1101/2020.09.04.20188771) by Francois Lachapelle, shared as preprint in medRxiv, showed that in September 2020, up to 24.8% (biorXiv) and 19.3% (medRxiv) COVID19-related preprints could be matched to published journal articles in the CORD-19 database, using conditional fuzzy logic.
+For an estimation of how many published journal  articles are not detected by the preprint servers themselves, a [recent analysis](https://doi.org/10.1101/2020.09.04.20188771) by Francois Lachapelle, shared as preprint in medRxiv, showed that in September 2020, up to 24.8% (biorXiv) and 19.3% (medRxiv) COVID19-related preprints could be matched to published journal articles in the CORD-19 database, using conditional fuzzy logic.
+
+Other potential avenues for data on links between preprints and published papers to explore could be [EuropePMC](https://europepmc.org/Preprints) (that links preprints and published papers), [Unpaywall](https://unpaywall.org/data-format) (that includes preprints as green OA versions of published papers) and [Microsoft Academic](https://docs.microsoft.com/en-us/academic-services/graph/resources-faq#what-is-familyid-in-papers) (that groups detected versions of a paper in a 'paper family').  
 
 
-medRxiv (n=7370) | bioRxiv (n=2167)
+medRxiv (n=9465) | bioRxiv (n=2881)
 :--------------------------|:----------------------------|
 ![COVID-19 preprints per week - medRxiv](outputs/figures/CSHL_comparison/covid19_preprints_published_compare_Crossref_medRxiv_week.png) | ![COVID-19 preprints per week - bioRxiv](outputs/figures/CSHL_comparison/covid19_preprints_published_compare_Crossref_bioRxiv_week.png)
 
@@ -101,21 +101,19 @@ It might be expected that linking preprints and published papers might be easier
 
 To check whether published papers from publisher-associated preprint servers indeed end up in journals from the same publisher, an alluvial plot was made showing the destination of all preprints with links to a published paper in their metadata. Indeed, preprints from JMIR and ResearchSquare predominantly 'end up ' in journals from JMIR and SpringerNature, respectively. However, only a subset of preprints on Preprints.org with a link to a subsequent paper get published in MDPI-journals, with over half ending up in journals from other publishers. 
 
-. | Destination of preprints linked to published papers (n=1348)|.
+. | Destination of preprints linked to published papers (n=2750)|.
 :----------------------------|:----------------------------|:--------------------------|
 ![empty](outputs/figures/destination/empty.png) | ![preprint_destination](outputs/figures/destination/covid19_preprints_destination.png) | ![empty](outputs/figures/destination/empty.png)
 
 
 ### Post scriptum: The Case of the Disappearing Metadata
 
-The data reported here were collected on October 24, 2020, for COVID-related preprints published between January 1, 2020 and October 11, 2020. When I wanted to run an update of the dataset on November 27, 2020, I noticed that **140 of 227 medRxiv preprints no longer had a link to the published paper in Crossref metadata** (while still displaying a link on medRxiv itself). 
-
-All preprints in this group were published on medRxiv between January 1, 2020 and April 11, 2020, and further inspection showed their metadata were all last updated after November 1, 2020 (scipts and data [here](20201127/medrxiv_check/medrxiv_check.R)). 
-
-A [query using the Crossref API](http://api.crossref.org/prefixes/10.1101/works?filter=type:posted-content,from-posted-date:2020-01,until-posted-date:2020-11,from-update-date:2020-11,until-update-date:2020-11,relation.type:is-preprint-of&rows=0) reveals that across bioRxiv/medRxiv, preprints published between January-November 2020 that had an update to their metadata after November 1, 2020 have no links to published journal articles. 
-
-So it looks like something went wrong here on the technical side - I will wait until this is resolved before updating the data and charts.  
+When comparing data collected from October 2020 to January 2021, (data in directory [archived](archived)), it appears that a sizeable number of COVID-related preprints on medRxiv **lose (and sometimes gain back) the link to the published paper in Crossref metadata** (while still displaying a link on medRxiv itself). This may be a technical issue occurring with metadata updates. It seems important to investigate this further, as it has implications for the use of these metadata. 
 
 medRxiv, sample date Oct 24, 2020 | medRxiv, sample date Nov 27, 2020 
 :--------------------------|:----------------------------|
-![COVID-19 preprints per week - medRxiv](outputs/figures/CSHL_comparison/covid19_preprints_published_compare_Crossref_medRxiv_week.png) | ![COVID-19 preprints per week - medRxiv](20201127/outputs/figures/CSHL_comparison/covid19_preprints_published_compare_Crossref_medRxiv_week.png)
+![COVID-19 preprints per week - medRxiv](archived/20201024/outputs/figures/CSHL_comparison/covid19_preprints_published_compare_Crossref_medRxiv_week.png) | ![COVID-19 preprints per week - medRxiv](archived/20201127/outputs/figures/CSHL_comparison/covid19_preprints_published_compare_Crossref_medRxiv_week.png)
+
+medRxiv, sample date Dec 18, 2020 | medRxiv, sample date Jan 24, 2021 
+:--------------------------|:----------------------------|
+![COVID-19 preprints per week - medRxiv](archived/20201218/outputs/figures/CSHL_comparison/covid19_preprints_published_compare_Crossref_medRxiv_week.png) | ![COVID-19 preprints per week - medRxiv](outputs/figures/CSHL_comparison/covid19_preprints_published_compare_Crossref_medRxiv_week.png)

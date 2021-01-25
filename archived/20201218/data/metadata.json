@@ -1,0 +1,10 @@
+{
+  "release_date": "2020-12-18",
+  "sample_date": "2020-12-18",
+  "sample_date_preprints": {
+    "release_date": "2020-12-14",
+    "sample_date": "2020-12-13",
+    "url": "https://github.com/nicholasmfraser/covid19_preprints/blob/master/data/covid19_preprints.csv?raw=true"
+  },
+  "url": "https://github.com/bmkramer/covid19_preprints_published/blob/master/data/covid19_preprints_published.csv?raw=true"
+}

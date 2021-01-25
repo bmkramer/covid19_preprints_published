@@ -20,7 +20,10 @@ library(ggalluvial)
 # (publication date, journal, publisher)
 
 ```{r message = FALSE, warning = FALSE, cache = TRUE}
- 
+
+covid_preprints_published <- 
+  read_csv("data/covid19_preprints_published.csv")
+           
 published_dois <- covid_preprints_published %>%
   filter(!is.na(preprint_of_doi)) %>%
   pull(preprint_of_doi)
@@ -39,7 +42,7 @@ parsePublishedArticleData <- function(item) {
 }
 
 published_articles <- map_df(published_articles_data,
-                             parsePublishedArticleData) 
+                             parsePublishedArticleData)
 
 published_articles <- published_articles %>%
   mutate(published_doi = str_trim(str_to_lower(published_doi))) %>%
@@ -136,8 +139,8 @@ p1 <- covid_preprints_time_to_publish %>%
   mutate(covid_preprint = "covid_preprint") %>%
   filter(!is.na(delay_in_days)) %>%
   mutate(pub_bracket = cut(as.numeric(delay_in_days), 
-                           seq(-150, 270, by = 30), 
-                           labels=seq(-150, 240, by = 30))) %>%
+                           seq(-150, 360, by = 30), 
+                           labels=seq(-150, 330, by = 30))) %>%
   group_by(covid_preprint) %>% 
   count(pub_bracket) %>%
   mutate(prop = n*100 / sum(n)) %>%
@@ -181,7 +184,7 @@ p2 <- covid_preprints_time_to_publish %>%
        fill = "", color = "") +
   scale_color_manual(values = palette[2]) +
   scale_fill_manual(values = palette[2]) +
-  scale_y_continuous(breaks=seq(-120,240,30)) +
+  scale_y_continuous(breaks=seq(-120,330,30)) +
   theme(axis.text.x = element_text(size = 10, angle = 45, hjust = 1),
         legend.position = "top") +
   guides(fill = FALSE, colour = FALSE) +
@@ -289,5 +292,22 @@ ggplot() +
   ggsave(paste0("outputs/figures/destination/empty.png"), 
          width = 6, 
          height = 18)
+
+```
+
+
+# Calculate means for Readme file
+
+```{r}
+
+count <- covid_preprints_time_to_publish %>%
+  mutate(source = case_when(
+    source %in% OSF_names ~ "OSF",
+    TRUE ~ source)) %>%
+  filter(source %in% servers_selected) %>%
+  filter(!is.na(delay_in_days)) %>%
+  #group_by(source) %>%
+  summarize(mean = mean(delay_in_days))
+
 
 ```

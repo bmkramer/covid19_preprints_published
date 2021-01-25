@@ -40,6 +40,7 @@ sample_date_preprints <- sample_date_preprints %>%
   .$sample_date %>%
   as.Date()
 
+
 ```
 
 
@@ -133,7 +134,7 @@ release_date <- Sys.Date()
 # Create metadata as list
 metadata <- list()
 metadata$release_date <- release_date
-metadata$sample_date <- sample_date
+metadata$sample_date_crossref <- sample_date
 metadata$sample_date_preprints <- sample_date_preprints
 metadata$url <- "https://github.com/bmkramer/covid19_preprints_published/blob/master/data/covid19_preprints_published.csv?raw=true"
 
@@ -257,7 +258,8 @@ p2 <- covid_preprints_published %>%
 # Weekly preprint counts - per preprint server
 
 # Select source to display in graph
-var <- servers_selected[11]
+# To do: wrap into function and map over servers_selected
+var <- servers_selected[7]
 
 # Create graph
 p3 <- covid_preprints_published_viz %>%
@@ -294,7 +296,8 @@ p3 <- covid_preprints_published_viz %>%
 # Weekly preprint counts per preprint server - percentage
 
 # Select source to display in graph
-var <- servers_selected[4]
+# To do: wrap into function and map over servers_selected
+var <- servers_selected[7]
 
 # Create graph
 p4 <- covid_preprints_published_viz %>%
@@ -375,3 +378,13 @@ ggplot() +
          height = 6)
 
 ```
+
+# Calculate counts for Readme file
+```{r}
+
+count <- covid_preprints_published_viz %>%
+  group_by(source) %>%
+   summarise_all(~ sum(!is.na(.)))
+
+```
+
