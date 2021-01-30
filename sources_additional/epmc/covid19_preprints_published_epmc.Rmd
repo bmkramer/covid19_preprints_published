@@ -1,0 +1,204 @@
+---
+title: "COVID-19 Preprints - Europe PMC"
+output: github_document
+---
+
+Compare links from preprints to published papers in EuropePMC
+and compare to data in Crossref (all preprints servers) and bioRxiv/medRxiv
+
+This approach queries EuropePMC for covid-related preprints directly, 
+rather than only for dois in covid_preprints, to retrieve all versions
+
+# Load required packages 
+
+```{r message = FALSE, warning = FALSE}
+
+library(lubridate)
+library(tidyverse)
+library(europepmc)
+library(colorspace)
+
+```
+
+
+# Set sample date
+# Retrieve the latest sample date for preprints
+
+```{r message = FALSE, warning = FALSE}
+sample_date <- Sys.Date()
+sample_date <- "2021-01-27"
+
+sample_date_preprints <- fromJSON(
+  "data/metadata.json"
+  ) 
+
+sample_date_preprints <- sample_date_preprints %>%
+  .$sample_date_preprints %>%
+  as.Date()
+
+```
+
+#query EuropePMC for COVID preprints
+
+```{r message = FALSE, warning = FALSE, cache = TRUE}
+
+dois <- covid_preprints_published %>%
+  #filter(source == "bioRxiv",
+  #       !is.na(is_preprint_of)) %>%
+  pull(identifier)
+ 
+epmc_res <- epmc_search_by_doi(doi = dois, output = "raw")
+
+epmc_preprints_res <- epmc_search(
+  #use same query as used for covid_preprints.csv
+  query = '(coronavirus OR covid-19 OR sars-cov OR ncov-2019 OR 2019-ncov OR hcov-19 OR sars-2) AND SRC:PPR',
+  #to replicate results from the website, synonym must be set to T
+  synonym = TRUE,
+  #shortcut: manually check number of results on website
+  #limit cannot exceed expected number of results
+  limit = 26790,
+  output = "raw")
+
+parseEuropePMC_preprints <- function(item) {
+  tibble(
+    epmc_doi = if(length(item$doi)) item$doi else NA_character_,
+    epmc_id = if(length(item$id)) item$id else NA_character_,
+    epmc_source = if(length(item$source)) item$source else NA_character_,
+    epm_links = length(item$commentCorrectionList$commentCorrection),
+     epm_links_id = if(length(item$commentCorrectionList$commentCorrection)) item$commentCorrectionList$commentCorrection[[1]]$id else NA_character_,
+    epm_links_source = if(length(item$commentCorrectionList$commentCorrection)) item$commentCorrectionList$commentCorrection[[1]]$source else NA_character_,
+    epm_links_type = if(length(item$commentCorrectionList$commentCorrection)) item$commentCorrectionList$commentCorrection[[1]]$type else NA_character_
+    )
+}
+
+
+epmc_preprints_df <- map_df(epmc_preprints_res,
+                            parseEuropePMC_preprints) 
+
+
+#check for cases where 1st link != "Preprint of"
+check <- epmc_preprints_df %>%
+  count(epm_links_type)
+
+write_csv(epmc_preprints_df, "covid_preprints_all_epmc.csv")
+epmc_preprints_df <- read_csv("covid_preprints_all_epmc.csv")
+
+```
+
+
+#Join with Crossref and CSHL data
+
+```{r message = FALSE, warning = FALSE}
+
+# read files to join
+cshl_df <- read_csv("../../data/covid19_preprints_published_cshl.csv")
+cr_df <- read_csv("../../data/covid19_preprints_published.csv")
+
+#prep dataframes to join
+#To do: turn de-versioning into a function to reuse
+
+epmc_join <- epmc_preprints_df %>% 
+  #filter to records with doi (NB this excludes e.g. arxiv)
+  filter(!is.na(epmc_doi)) %>%
+  select(epmc_doi, epm_links_type) %>%
+  mutate(epmc_doi = str_trim(str_to_lower(epmc_doi))) %>%
+  rename(identifier = epmc_doi,
+         linked_epmc = epm_links_type) %>%
+  mutate(linked_epmc = case_when(
+    !is.na(linked_epmc) ~ "linked_epmc",
+    is.na(linked_epmc) ~ NA_character_)) %>%
+  mutate(in_epmc = "in_epmc") %>%
+  #strip version info for clean matching
+  # Remove .v2, /v2 and -v2 at the end of a string
+  # with a maximum of 3 digits
+  mutate(identifier_clean = str_remove(
+    identifier,
+    "[\\.\\/\\-]v[0-9]{1,3}$")) %>%
+  select(-identifier) %>%
+  #make sure duplicate identifier_clean have some linked_epmc info
+  group_by(identifier_clean) %>%
+  fill(linked_epmc, .direction = "downup") %>%
+  ungroup() %>%
+  #remove any duplicate identifier_clean
+  distinct()
+
+cshl_join <- cshl_df %>%
+  select(identifier, is_published_CSHL) %>%
+  mutate(identifier = str_trim(str_to_lower(identifier))) %>%
+  rename(linked_cshl = is_published_CSHL) %>%
+  mutate(
+    linked_cshl = case_when(
+      linked_cshl == TRUE ~ "linked_cshl",
+      linked_cshl == FALSE ~ NA_character_))
+#NB no version numbers in cshl dois
+
+cr_join <- cr_df %>%
+  select(source, identifier, posted_date, is_preprint_of) %>%
+  mutate(identifier = str_trim(str_to_lower(identifier))) %>%
+  rename(linked_cr = is_preprint_of) %>%
+  mutate(
+    linked_cr = case_when(
+      !is.na(linked_cr) ~ "linked_cr",
+      is.na(linked_cr) ~ NA_character_)) %>%
+  #strip version info for clean matching
+  # Remove .v2, /v2 and -v2 at the end of a string
+  # with a maximum of 3 digits
+  mutate(identifier_clean = str_remove(
+    identifier,
+    "[\\.\\/\\-]v[0-9]{1,3}$")) %>%
+  select(source, identifier, identifier_clean, everything())
+  
+  
+# join together   
+covid_preprints_published_epmc <- cr_join %>%
+  left_join(cshl_join, by = ("identifier")) %>%
+  left_join(epmc_join, by = ("identifier_clean"))
+
+write_csv(covid_preprints_published_epmc, "covid_preprints_published_epmc.csv")
+
+#read in with column specification for linked_cshl as that has only NAs in part that is checked for guessing
+covid_preprints_published_epmc <- read_csv(
+  "covid_preprints_published_epmc.csv",
+  col_types = cols(.default = "?", linked_cshl = "c"))
+
+```
+
+# Group OSF preprint servers together
+
+```{r}
+# Group all OSF preprints together
+OSF_names <- covid_preprints_published_epmc %>%
+  count(source) %>%
+  filter(str_detect(source, "OSF")) %>%
+  arrange(desc(n)) %>%
+  pull(source)
+
+covid_preprints_published_epmc2 <- covid_preprints_published_epmc %>%
+  mutate(source = case_when(
+    source %in% OSF_names ~ "OSF",
+    TRUE ~ source))
+
+```
+
+
+#Some calculations
+
+```{r message = FALSE, warning = FALSE}
+
+epmc_per_source <- covid_preprints_published_epmc %>%
+  group_by(source) %>%
+  summarise_all(~ sum(!is.na(.))) %>%
+  arrange(desc(identifier))
+
+epmc_per_source <- epmc_per_source %>%
+  rename(doi = identifier,
+         linked_in_crossref = linked_cr,
+         linked_in_europepmc = linked_epmc,
+         linked_in_biorxiv_medrxiv = linked_cshl)
+
+write_csv(epmc_per_source, "epmc_per_source.csv")
+  
+```
+
+``
+

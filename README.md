@@ -108,7 +108,7 @@ To check whether published papers from publisher-associated preprint servers ind
 
 ### Post scriptum: The Case of the Disappearing Metadata
 
-When comparing data collected from October 2020 to January 2021, (data in directory [archived](archived)), it appears that a sizeable number of COVID-related preprints on medRxiv **lose (and sometimes gain back) the link to the published paper in Crossref metadata** (while still displaying a link on medRxiv itself). This may be a technical issue occurring with metadata updates. It seems important to investigate this further, as it has implications for the use of these metadata. 
+When comparing data collected from October 2020 to January 2021, (older data in directory [archived](archived)), it appears that a sizeable number of COVID-related preprints on medRxiv **lose (and sometimes gain back) the link to the published paper in Crossref metadata** (while still displaying a link on medRxiv itself). This may be a technical issue occurring with metadata updates. It seems important to investigate this further, as it has implications for the use of these metadata. 
 
 medRxiv, sample date Oct 24, 2020 | medRxiv, sample date Nov 27, 2020 
 :--------------------------|:----------------------------|
