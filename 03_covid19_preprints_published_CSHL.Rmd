@@ -250,7 +250,7 @@ max_days <- max(preprints_matched_time_to_publish$delay_in_days,
 # Weekly preprint counts - per preprint server
 
 # Select source to display in graph
-var <- source_count[1]
+var <- source_count[2]
 
 # Create graph
 p1 <- preprints_matched %>%
@@ -274,11 +274,12 @@ p1 <- preprints_matched %>%
   ggplot(aes(x = posted_week, y = n, 
              fill = forcats::fct_rev(status))) +
   geom_col() +
-  labs(x = "Posted Date (week beginning)", y = "Preprints", fill = paste0("status (from Crossref and ", var, ")"),
+  labs(x = "Posted Date (year-month)", y = "Preprints", fill = paste0("status (from Crossref and ", var, ")"),
        title = paste0("COVID-19 preprints per week on ",var), 
        subtitle = paste0("(preprints up until ", sample_date_preprints, ", sample date ", sample_date,")")
        ) +
-  scale_x_date(date_breaks = "1 week",
+  scale_x_date(date_breaks = "1 month",
+               date_labels = "%Y-%m",
                expand = c(0, 0),
                limits = c(ymd("2020-01-13"), ymd(sample_date_preprints))) +
   scale_fill_manual(values = c(palette[1],palette[3],palette[2])) +
