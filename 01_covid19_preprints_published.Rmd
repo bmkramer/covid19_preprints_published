@@ -345,21 +345,25 @@ p5 <- covid_preprints_published_viz %>%
   mutate(prop = n*100 / sum(n),
          total = sum(n)) %>%
   ungroup() %>%
-  mutate(source_label = str_c(source, "\n(", total, ")"),
-         data_label = str_c(round(prop,1), "%")) %>%
+  mutate(
+    #source_label = str_c(source, "\n(", total, ")"),
+    source_label = str_c(source),
+    data_label = str_c(round(prop,1), "%")) %>%
   filter(!is.na(is_preprint_of)) %>%
   arrange(desc(total)) %>%
   mutate(source_label = factor(source_label),
          source_label = fct_inorder(source_label)) %>%
   ggplot(aes(x = source_label, y = prop, width=.75)) +
   geom_col(color = "grey50", fill = "#95D8FA", size = 0.25, position = "dodge") +
-  geom_text(aes(label = data_label), vjust = -1) +
+  geom_text(aes(label = data_label), size = 5.5, vjust = -1) +
+  ylim(0, 55) +
   labs(x = "", y = "% linked to published journal article", fill ="") +
-  theme(axis.title.x = element_blank()) +
   guides(fill = FALSE) + 
-  theme(axis.text.x = element_text(size = 10)) +
-  theme(axis.text.y = element_blank()) +
-  theme(axis.title.y = element_text(size = 12))
+  theme(axis.text.x = element_text(size = 16, angle = 0, vjust = 1), 
+        axis.text.y = element_blank(),
+        axis.title.x = element_blank(),
+        #axis.title.y = element_text(size = 12)
+        axis.title.y = element_blank())
   ggsave("outputs/figures/preprints_published/covid19_preprints_published_percentage.png", width = 12, height = 6)
 
 ```

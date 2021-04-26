@@ -347,8 +347,10 @@ preprints_matched_percentage <- preprints_matched %>%
   ungroup() %>%
   filter(!is.na(is_published)) %>%
   arrange(desc(total)) %>%
-  mutate(source_label = str_c(source, "\n(", total, ")"),
-         data_label = str_c(round(prop,1), "%")) %>%
+  mutate(
+    #source_label = str_c(source, "\n(", total, ")"),
+    source_label = str_c(source),
+    data_label = str_c(round(prop,1), "%")) %>%
   mutate(source_label = factor(source_label),
          source_label = fct_inorder(source_label))
 
@@ -365,13 +367,19 @@ p3 <- preprints_matched_percentage %>%
   scale_fill_manual(values = palette[2:3]) + 
   geom_text(position = position_dodge2(width= 0.8), 
             aes(label = data_label), 
+            size = 5.5,
             vjust = -1) +
   ylim(0, 40) +
   theme(axis.title.x = element_blank()) +
   #guides(fill = FALSE) + 
-  theme(axis.text.x = element_text(size = 10),
+  theme(axis.text.x = element_text(size = 16, angle = 0, vjust = 1),
         axis.text.y = element_blank(),
-        axis.title.y = element_text(size = 12))
+        axis.title.x = element_blank(),
+        #axis.title.y = element_text(size = 12),
+        axis.title.y = element_blank(),
+        legend.text = element_text(size = 14),
+        legend.position = "right"
+        )
 ggsave("outputs/figures/CSHL_comparison/covid19_preprints_published_percentage_compare_Crossref_CSHL.png", width = 12, height = 6)
 
 ```
