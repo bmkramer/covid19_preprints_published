@@ -309,12 +309,16 @@ p2 <- preprints_matched_time_to_publish %>%
   geom_jitter(aes(fill = factor(covid_preprint)),
               shape = 21, size = 0.7, alpha = 0.7,
               position = position_jitterdodge(jitter.width = 0.5)) + 
-  labs(x = "", y = str_wrap("Time from preprint posting to publication (days)", 30), 
+  labs(x = "", y = str_wrap("Time to publication (days)", 30), 
        fill = "", color = "") +
   scale_color_manual(values = palette[2:3]) +
   scale_fill_manual(values = palette[2:3]) +
-  scale_y_continuous(breaks=seq(-120,420,30)) +
-  theme(axis.text.x = element_text(size = 10, angle = 45, hjust = 1),
+  scale_y_continuous(breaks=seq(-30,420,30)) +
+  theme(axis.text.x = element_text(size = 16, 
+                                   angle = 0, 
+                                   hjust = 0.5),
+        axis.text.y = element_text(size = 14),
+        axis.title.y = element_text(size = 14),
         legend.position = "right") +
   guides(fill = FALSE, colour = guide_legend(reverse=TRUE)) +
   ggsave("outputs/figures/CSHL_comparison/days_to_publish_CSHL_comparison.png", width = 12, height = 6) 

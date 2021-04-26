@@ -190,7 +190,7 @@ p2 <- covid_preprints_time_to_publish %>%
                                    angle = 0, 
                                    hjust = 0.5),
         axis.text.y = element_text(size = 14),
-        axis.title.y = element_text(size = 12),
+        axis.title.y = element_text(size = 14),
         #axis.title.y = element_blank(),
         legend.position = "top") +
   guides(fill = FALSE, colour = FALSE) +
