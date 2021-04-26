@@ -222,7 +222,7 @@ publisher <- covid_preprints_destination %>%
     #published_publisher == "American Society for Microbiology" ~ "ASM",
     published_publisher == "American Chemical Society (ACS)" ~ "ACS",
     #published_publisher == "Informa UK Limited" ~ "T&F",
-    is.na(published_publisher)  ~ "publisher not retrieved",
+    is.na(published_publisher)  ~ "not retrieved",
     TRUE ~ "other ")) %>%
   select(-n)
 
@@ -247,7 +247,7 @@ destination_levels <- c("JMIR ",
                    "MDPI",
                    "ACS",
                    "other ",
-                   "publisher not retrieved") 
+                   "not retrieved") 
 
 #create plot
 p3 <- covid_preprints_destination %>%
@@ -261,16 +261,18 @@ p3 <- covid_preprints_destination %>%
              axis2 = destination, 
              y = freq)) +
   scale_x_discrete(limits = c("Preprint server", "Publisher"), 
-                   expand = c(0, 0)) +
+                   expand = c(0, 0),
+                   position = "top") +
   scale_y_continuous(expand = c(0, 0)) +
-  labs(title = paste0("Destination of preprints with links to published papers (n=",nrow(covid_preprints_destination),")")) +
+  #labs(title = paste0("Destination of preprints with links to published papers (n=",nrow(covid_preprints_destination),")")) +
   geom_alluvium(aes(fill = origin), reverse = TRUE) +
   geom_stratum(reverse = TRUE, color = "grey50") + 
-  geom_text(aes(label = after_stat(stratum)), size = 6, stat = "stratum", 
+  geom_text(aes(label = after_stat(stratum)), size = 8, 
+            stat = "stratum", 
             reverse = TRUE, color = "grey25") +
   guides(fill = FALSE) +
   theme(plot.title = element_text(size = 20),
-        axis.text.x = element_text(size = 18, face = "bold"),
+        axis.text.x = element_text(size = 24, face = "bold"),
         axis.title.y = element_blank(),
         axis.text.y = element_blank(),
         axis.ticks.y = element_blank(),
