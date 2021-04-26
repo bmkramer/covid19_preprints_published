@@ -319,6 +319,7 @@ p2 <- preprints_matched_time_to_publish %>%
                                    hjust = 0.5),
         axis.text.y = element_text(size = 14),
         axis.title.y = element_text(size = 14),
+        legend.text = element_text(size = 10),
         legend.position = "right") +
   guides(fill = FALSE, colour = guide_legend(reverse=TRUE)) +
   ggsave("outputs/figures/CSHL_comparison/days_to_publish_CSHL_comparison.png", width = 12, height = 6) 
