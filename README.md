@@ -1,3 +1,6 @@
+[![DOI](https://zenodo.org/badge/306979254.svg)](https://zenodo.org/badge/latestdoi/306979254)
+
+
 # COVID-19 preprints linked to published journal articles in Crossref metadata
 
 This repository contains code used to extract details of COVID-19 related preprints that are linked to published journal articles in Crossref metadata, and visualize their distribution over time (building on [COVID-19 Preprints](https://github.com/nicholasmfraser/covid19_preprints))
